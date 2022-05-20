@@ -1,7 +1,7 @@
 ---
 title: Kafka扫盲
 date: 2022-05-20 16:42:56
-tags: 后端技术
+tags: [后端技术, 消息队列]
 ---
 
 ## Kafka
@@ -12,7 +12,7 @@ tags: 后端技术
 
 ![img](https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker01.png)
 
-
+<!--more-->
 
 	一个典型的Kafka集群中包含若干Producer（可以是web前端FET，或者是服务器日志等），若干broker（Kafka支持水平扩展，一般broker数量越多，集群吞吐率越高），若干ConsumerGroup，以及一个Zookeeper集群。
 	
