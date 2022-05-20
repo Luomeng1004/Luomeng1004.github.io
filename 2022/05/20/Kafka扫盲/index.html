@@ -20,23 +20,34 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"luomeng1004.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="风雨都很大">
-<meta property="og:url" content="https://luomeng1004.github.io/index.html">
+    <meta name="description" content="Kafka一、架构示意图 一个典型的Kafka集群中包含若干Producer（可以是web前端FET，或者是服务器日志等），若干broker（Kafka支持水平扩展，一般broker数量越多，集群吞吐率越高），若干ConsumerGroup，以及一个Zookeeper集群。  Kafka通过Zookeeper管理Kafka集群配置：选举Kafka broker的leader，以及在Consumer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka扫盲">
+<meta property="og:url" content="https://luomeng1004.github.io/2022/05/20/Kafka%E6%89%AB%E7%9B%B2/index.html">
 <meta property="og:site_name" content="风雨都很大">
+<meta property="og:description" content="Kafka一、架构示意图 一个典型的Kafka集群中包含若干Producer（可以是web前端FET，或者是服务器日志等），若干broker（Kafka支持水平扩展，一般broker数量越多，集群吞吐率越高），若干ConsumerGroup，以及一个Zookeeper集群。  Kafka通过Zookeeper管理Kafka集群配置：选举Kafka broker的leader，以及在Consumer">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker01.png">
+<meta property="og:image" content="https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker02.png">
+<meta property="og:image" content="https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker03.png">
+<meta property="og:image" content="https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker04.png">
+<meta property="og:image" content="https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker05.png">
+<meta property="article:published_time" content="2022-05-20T08:42:56.000Z">
+<meta property="article:modified_time" content="2022-05-20T08:45:52.688Z">
 <meta property="article:author" content="Luomeng1004">
+<meta property="article:tag" content="后端技术">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker01.png">
 
 
-<link rel="canonical" href="https://luomeng1004.github.io/">
+<link rel="canonical" href="https://luomeng1004.github.io/2022/05/20/Kafka%E6%89%AB%E7%9B%B2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://luomeng1004.github.io/2022/05/20/Kafka%E6%89%AB%E7%9B%B2/","path":"2022/05/20/Kafka扫盲/","title":"Kafka扫盲"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>风雨都很大</title>
+<title>Kafka扫盲 | 风雨都很大</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -70,7 +81,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">风雨都很大</h1>
+      <p class="site-title">风雨都很大</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">但一切都还好</p>
@@ -130,7 +141,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -143,6 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka"><span class="nav-number">1.</span> <span class="nav-text">Kafka</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9E%B6%E6%9E%84%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-number">1.1.</span> <span class="nav-text">一、架构示意图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81kafka%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">二、kafka特点：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81Docker%E6%90%AD%E5%BB%BA"><span class="nav-number">1.3.</span> <span class="nav-text">三、Docker搭建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Kakfa%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">四、Kakfa使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Kafka%E7%AE%A1%E7%90%86%E8%8A%82%E7%82%B9"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.Kafka管理节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%BB%E9%A2%98"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%AF%BB%E5%86%99%E9%AA%8C%E8%AF%81"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.读写验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.5.</span> <span class="nav-text">五、使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81Go%E8%AF%AD%E8%A8%80%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.6.</span> <span class="nav-text">六、Go语言示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%94%9F%E4%BA%A7%E8%80%85%EF%BC%9A"><span class="nav-number">1.6.1.</span> <span class="nav-text">1.生产者：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%B6%88%E8%B4%B9%E8%80%85"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.消费者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%85%83%E6%95%B0%E6%8D%AE"><span class="nav-number">1.6.3.</span> <span class="nav-text">3.元数据</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -197,115 +209,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://luomeng1004.github.io/2022/05/20/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/custom-logo.jpeg">
-      <meta itemprop="name" content="Luomeng1004">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/20/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-20 16:45:52" itemprop="dateCreated datePublished" datetime="2022-05-20T16:45:52+08:00">2022-05-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">测试</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>367</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/20/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://luomeng1004.github.io/2022/05/20/Kafka%E6%89%AB%E7%9B%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -319,13 +233,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 风雨都很大">
+      <meta itemprop="name" content="Kafka扫盲 | 风雨都很大">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/20/Kafka%E6%89%AB%E7%9B%B2/" class="post-title-link" itemprop="url">Kafka扫盲</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Kafka扫盲
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -363,7 +277,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><h3 id="一、架构示意图"><a href="#一、架构示意图" class="headerlink" title="一、架构示意图"></a>一、架构示意图</h3><p><img src="https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker01.png" alt="img"></p>
+        <h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><h3 id="一、架构示意图"><a href="#一、架构示意图" class="headerlink" title="一、架构示意图"></a>一、架构示意图</h3><p><img src="https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker01.png" alt="img"></p>
 <pre><code>一个典型的Kafka集群中包含若干Producer（可以是web前端FET，或者是服务器日志等），若干broker（Kafka支持水平扩展，一般broker数量越多，集群吞吐率越高），若干ConsumerGroup，以及一个Zookeeper集群。
 
 Kafka通过Zookeeper管理Kafka集群配置：选举Kafka broker的leader，以及在Consumer Group发生变化时进行rebalance，因为consumer消费kafka topic的partition的offsite信息是存在Zookeeper的。
@@ -441,433 +355,37 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
 
 <h4 id="3-元数据"><a href="#3-元数据" class="headerlink" title="3.元数据"></a>3.元数据</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">metadata_test</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;metadata test\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    config := sarama.NewConfig()</span><br><span class="line">    config.Version = sarama.V0_11_0_2</span><br><span class="line"></span><br><span class="line">    client, err := sarama.NewClient([]<span class="type">string</span>&#123;<span class="string">&quot;localhost:9092&quot;</span>&#125;, config)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;metadata_test try create client err :%s\n&quot;</span>, err.Error())</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">defer</span> client.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// get topic set</span></span><br><span class="line">    topics, err := client.Topics()</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;try get topics err %s\n&quot;</span>, err.Error())</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fmt.Printf(<span class="string">&quot;topics(%d):\n&quot;</span>, <span class="built_in">len</span>(topics))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> _, topic := <span class="keyword">range</span> topics &#123;</span><br><span class="line">        fmt.Println(topic)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// get broker set</span></span><br><span class="line">    brokers := client.Brokers()</span><br><span class="line">    fmt.Printf(<span class="string">&quot;broker set(%d):\n&quot;</span>, <span class="built_in">len</span>(brokers))</span><br><span class="line">    <span class="keyword">for</span> _, broker := <span class="keyword">range</span> brokers &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, broker.Addr())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
     
     
+      
+
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF/" rel="tag"><i class="fa fa-tag"></i> 后端技术</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://luomeng1004.github.io/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/custom-logo.jpeg">
-      <meta itemprop="name" content="Luomeng1004">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/" class="post-title-link" itemprop="url">Java成长之路</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-05-20 10:48:39 / 修改时间：16:45:52" itemprop="dateCreated datePublished" datetime="2022-05-20T10:48:39+08:00">2022-05-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%81%8C%E4%B8%9A%E6%8A%80%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">职业技能</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Java成长之路"><a href="#Java成长之路" class="headerlink" title="Java成长之路"></a>Java成长之路</h1><blockquote>
-<p>闲时之路，忙时有书，阅读丈量世界，一章一篇总关情。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://luomeng1004.github.io/2022/05/19/Apache-Jackrabbit/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/custom-logo.jpeg">
-      <meta itemprop="name" content="Luomeng1004">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/19/Apache-Jackrabbit/" class="post-title-link" itemprop="url">Apache Jackrabbit</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-05-20 00:28:41 / 修改时间：16:45:52" itemprop="dateCreated datePublished" datetime="2022-05-20T00:28:41+08:00">2022-05-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%81%8C%E4%B8%9A%E6%8A%80%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">职业技能</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>909</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="Apache-Jackrabbit"><a href="#Apache-Jackrabbit" class="headerlink" title="Apache Jackrabbit"></a>Apache Jackrabbit</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="仓库配置"><a href="#仓库配置" class="headerlink" title="仓库配置"></a>仓库配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">Repository</span></span></span><br><span class="line"><span class="meta">	  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//The Apache Software Foundation//DTD Jackrabbit 1.5//EN&quot;</span></span></span><br><span class="line"><span class="meta">	  <span class="string">&quot;http://jackrabbit.apache.org/dtd/repository-1.5.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">FileSystem</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Security</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Workspaces</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Workspace</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Versioning</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">SearchIndex</span> <span class="attr">...</span>/&gt;</span>  <span class="comment">&lt;!-- optional --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Cluster</span> <span class="attr">...</span>/&gt;</span>	  <span class="comment">&lt;!-- optional, available since 1.2 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">DataStore</span> <span class="attr">...</span>/&gt;</span>	  <span class="comment">&lt;!-- optional, available since 1.4 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Repository</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><a target="_blank" rel="noopener" href="https://jackrabbit.apache.org/jcr/jackrabbit-configuration.html#file-system-configuration">FileSystem</a>: 存储库用来存储注册名称空间和节点类型等内容的虚拟文件系统</li>
-<li><a target="_blank" rel="noopener" href="https://jackrabbit.apache.org/jcr/jackrabbit-configuration.html#security-configuration">Security</a>: 认证授权配置</li>
-<li><a target="_blank" rel="noopener" href="https://jackrabbit.apache.org/jcr/jackrabbit-configuration.html#workspace-configuration">Workspaces</a>: 配置工作空间的管理位置和方式</li>
-<li><a target="_blank" rel="noopener" href="https://jackrabbit.apache.org/jcr/jackrabbit-configuration.html#workspace-configuration">Workspace</a>: 默认工作区配置模板</li>
-<li><a target="_blank" rel="noopener" href="https://jackrabbit.apache.org/jcr/jackrabbit-configuration.html#versioning-configuration">Versioning</a>: 存储库范围的版本存储的配置</li>
-<li><a target="_blank" rel="noopener" href="https://jackrabbit.apache.org/jcr/jackrabbit-configuration.html#search-configuration">SearchIndex</a>: 覆盖存储库范围的搜索索引的配置 &#x2F;jcr:system 内容树</li>
-<li><a target="_blank" rel="noopener" href="https://jackrabbit.apache.org/jcr/jackrabbit-configuration.html#cluster-configuration">Cluster</a>: 集群配置</li>
-<li><a target="_blank" rel="noopener" href="https://jackrabbit.apache.org/jcr/jackrabbit-configuration.html#data-store-configuration">DataStore</a>: 数据存储配置</li>
-</ul>
-<h4 id="配置中的变量"><a href="#配置中的变量" class="headerlink" title="配置中的变量"></a>配置中的变量</h4><ul>
-<li><code>$&#123;rep.home&#125;</code>: Repository home directory.</li>
-<li><code>$&#123;wsp.name&#125;</code>: Workspace name. Only available in workspace configuration.</li>
-<li><code>$&#123;wsp.home&#125;</code>: Workspace home directory. Only available in workspace configuration.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://luomeng1004.github.io/2022/05/19/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/custom-logo.jpeg">
-      <meta itemprop="name" content="Luomeng1004">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/19/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BB/" class="post-title-link" itemprop="url">如何搭建数据指标体系</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-19 15:49:28" itemprop="dateCreated datePublished" datetime="2022-05-19T15:49:28+08:00">2022-05-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-20 16:45:52" itemprop="dateModified" datetime="2022-05-20T16:45:52+08:00">2022-05-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%81%8C%E4%B8%9A%E6%8A%80%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">职业技能</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>12k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>11 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="如何搭建数据指标体系"><a href="#如何搭建数据指标体系" class="headerlink" title="如何搭建数据指标体系"></a>如何搭建数据指标体系</h2><p><img src="https://mmbiz.qpic.cn/mmbiz_png/jWg3EibnYW98NRiaeHp6qP8uv9ibCdmec7e6biad03fK7jGjIibIfj8pklbXyZ62xeJm06U6fR8l8PZiaCFiaz5nAHLqQ/640?wx_fmt=png" alt="图片"></p>
-<p>大家好，我是徐尧～</p>
-<p>今天徐尧分享的主题是如何搭建数据指标体系，主要分 3 部分：</p>
-<p>一是指标体系的作用；</p>
-<p>二是如何构建指标体系；</p>
-<p>三是指标体系的运用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/19/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87%E4%BD%93%E7%B3%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/20/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+            <div class="post-nav-item">
+                <a href="/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/" rel="next" title="Java成长之路">
+                  Java成长之路 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://luomeng1004.github.io/2022/05/19/%E6%8A%95%E8%B5%84%E7%9A%84%E8%89%BA%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/custom-logo.jpeg">
-      <meta itemprop="name" content="Luomeng1004">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 风雨都很大">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/05/19/%E6%8A%95%E8%B5%84%E7%9A%84%E8%89%BA%E6%9C%AF/" class="post-title-link" itemprop="url">投资的艺术</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-19 10:33:19" itemprop="dateCreated datePublished" datetime="2022-05-19T10:33:19+08:00">2022-05-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-20 16:45:52" itemprop="dateModified" datetime="2022-05-20T16:45:52+08:00">2022-05-20</time>
-    </span>
-
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>42</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>著名投资家查尔斯·艾里斯在《投资艺术》里曾写道：“当闪电打下来的时候，你最好在场”。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
