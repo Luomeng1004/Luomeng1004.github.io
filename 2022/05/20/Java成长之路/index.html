@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=Lato:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"luomeng1004.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Java成长之路[TOC]  闲时之路，忙时有书，阅读丈量世界，一章一篇总关情。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java成长之路">
+<meta property="og:url" content="https://luomeng1004.github.io/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/index.html">
+<meta property="og:site_name" content="风雨都很大">
+<meta property="og:description" content="Java成长之路[TOC]  闲时之路，忙时有书，阅读丈量世界，一章一篇总关情。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-20T02:48:39.000Z">
+<meta property="article:modified_time" content="2022-05-20T03:22:22.172Z">
+<meta property="article:author" content="Luomeng1004">
+<meta property="article:tag" content="后端技术">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://luomeng1004.github.io/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://luomeng1004.github.io/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/","path":"2022/05/20/Java成长之路/","title":"Java成长之路"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java成长之路 | 风雨都很大</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?72da6c7ff924024cec4a5a095833624f"></script>
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">风雨都很大</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">但一切都还好</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF"><span class="nav-number">1.</span> <span class="nav-text">Java成长之路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81Java"><span class="nav-number">1.1.</span> <span class="nav-text">一、Java</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%BF%9E%E5%BC%95%E7%94%A8%E9%83%BD%E7%AD%94%E4%B8%8D%E4%B8%8A%EF%BC%8C%E5%87%AD%E4%BB%80%E4%B9%88%E8%AF%B4%E4%BD%A0%E6%98%AFJava%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.连引用都答不上，凭什么说你是Java服务端开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FinalReference-%E5%BC%BA%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">FinalReference 强引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SoftReference-%E8%BD%AF%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">SoftReference 软引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WeakReference-%E5%BC%B1%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">WeakReference 弱引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PhantomReference-%E8%99%9A%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">PhantomReference 虚引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%92%8CReference%E7%9B%B8%E5%85%B3%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">和Reference相关的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JVM%E6%80%8E%E4%B9%88%E7%9F%A5%E9%81%93%E5%BC%95%E7%94%A8%E5%9C%A8%E4%B8%8D%E5%9C%A8"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">JVM怎么知道引用在不在</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E7%9A%84%E6%9C%80%E5%90%8E"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">最后的最后</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Golang"><span class="nav-number">1.2.</span> <span class="nav-text">二、Golang</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%BD%91%E7%BB%9C"><span class="nav-number">1.3.</span> <span class="nav-text">三、网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 网络协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.4.</span> <span class="nav-text">四、操作系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95"><span class="nav-number">1.5.</span> <span class="nav-text">五、数据结构与算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.6.</span> <span class="nav-text">六、数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.7.</span> <span class="nav-text">七、系统设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%B7%A5%E5%85%B7"><span class="nav-number">1.8.</span> <span class="nav-text">八、工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E8%B5%84%E6%96%99"><span class="nav-number">1.9.</span> <span class="nav-text">九、资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E7%BC%96%E7%A0%81%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.10.</span> <span class="nav-text">十、编码实践</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Luomeng1004"
+      src="/images/custom-logo.jpeg">
+  <p class="site-author-name" itemprop="name">Luomeng1004</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luomeng1004.github.io/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/custom-logo.jpeg">
+      <meta itemprop="name" content="Luomeng1004">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风雨都很大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java成长之路 | 风雨都很大">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java成长之路
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-20 10:48:39 / 修改时间：11:22:22" itemprop="dateCreated datePublished" datetime="2022-05-20T10:48:39+08:00">2022-05-20</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Java成长之路"><a href="#Java成长之路" class="headerlink" title="Java成长之路"></a>Java成长之路</h1><p>[TOC]</p>
+<blockquote>
+<p>闲时之路，忙时有书，阅读丈量世界，一章一篇总关情。</p>
+</blockquote>
+<span id="more"></span>
+
+
+
+<h2 id="一、Java"><a href="#一、Java" class="headerlink" title="一、Java"></a>一、Java</h2><h3 id="1-连引用都答不上，凭什么说你是Java服务端开发"><a href="#1-连引用都答不上，凭什么说你是Java服务端开发" class="headerlink" title="1.连引用都答不上，凭什么说你是Java服务端开发"></a>1.连引用都答不上，凭什么说你是Java服务端开发</h3><p><strong>【划重点】在Java中引用包括：</strong></p>
+<ul>
+<li>FinalReference 强引用</li>
+<li>SoftReference 软引用</li>
+<li>WeakReference 弱引用</li>
+<li>PhantomReference 虚引用</li>
+</ul>
+<p>那么为什么会提供这四种引用呢，主要原因有：</p>
+<ul>
+<li>方便Jvm进行垃圾回收</li>
+<li>方便开发人员使用，开发人员可以灵活的决定某些对象的生命周期</li>
+</ul>
+<h4 id="FinalReference-强引用"><a href="#FinalReference-强引用" class="headerlink" title="FinalReference 强引用"></a>FinalReference 强引用</h4><p>类似于 Object o &#x3D; new Object() 这类的引用，创建一个对象后，该引用会被保存在JVM栈中，而且只要强引用存在，垃圾回收器就不会回收掉被引用的对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="SoftReference-软引用"><a href="#SoftReference-软引用" class="headerlink" title="SoftReference 软引用"></a>SoftReference 软引用</h4><p>软引用关联的对象，在内存不够的情况下，会把这些软引用关联的对象列入垃圾回收范围中，然后进行回收，也就是说软引用并非是完全安全的，在内存不够的情况下是会被垃圾回收器回收掉的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SoftReferenceDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">        SoftReference[] softReferences = <span class="keyword">new</span> <span class="title class_">SoftReference</span>[count];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            softReferences[i] = <span class="keyword">new</span> <span class="title class_">SoftReference</span>&lt;TestObject&gt;(<span class="keyword">new</span> <span class="title class_">TestObject</span>(<span class="string">&quot;TestObject-&quot;</span> + i));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> softReferences[i].get();</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="literal">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;null&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(((TestObject) o).name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestObject</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">byte</span>[] values;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">TestObject</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        values = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span> * <span class="number">1024</span> * <span class="number">500</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过注释便可以知道，我这里实例化了多个大对象，然后放入softReferences数组中，之后便遍历打印出其中的对象的命名，打印结果如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">null</span><br><span class="line">null</span><br><span class="line">null</span><br><span class="line">TestObject-3</span><br><span class="line">TestObject-4</span><br></pre></td></tr></table></figure>
+
+<p>可以通过结果看出，前面四个对象因为内存不够而被垃圾回收器回收了。</p>
+<p><strong>日常使用</strong></p>
+<p>在我司的项目中，部分是使用软引用来保存从数据库中取出的数据，具体是做了一个中间层的封装，该中间层的作用就是在get出数据的时候会去判断数据是否为null，如果是为null再次从数据库读取，读取后再放入软引用的集合中，这样的做法是可以避免内存溢出。</p>
+<h4 id="WeakReference-弱引用"><a href="#WeakReference-弱引用" class="headerlink" title="WeakReference 弱引用"></a>WeakReference 弱引用</h4><p>弱引用比软引用更弱，被弱引用关联的对象只能存活到发生下一次垃圾回收之前，也就是说当发生GC时，无论当前内存是否足够，都会被回收掉。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WeakReferenceDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        WeakReference&lt;String&gt; stringWeakReference = <span class="keyword">new</span> <span class="title class_">WeakReference</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;I am here!&quot;</span>));</span><br><span class="line">        System.out.println(stringWeakReference.get());</span><br><span class="line"></span><br><span class="line">        System.gc();</span><br><span class="line"></span><br><span class="line">        System.out.println(stringWeakReference.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码很简短，就是先构建一个弱引用对象，然后在gc前先打印出来证明它存在过，之后手动调用gc，再次打印，可以看出已经没了。运行结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">I am here!</span><br><span class="line">null</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<h4 id="PhantomReference-虚引用"><a href="#PhantomReference-虚引用" class="headerlink" title="PhantomReference 虚引用"></a>PhantomReference 虚引用</h4><p>虚引用和上面不同的地方在于，一个对象是否有虚引用的存在，完全不会对其生存时间构成如何影响，并且也无法通过虚引用来获取一个对象的实例，也就是说跟没有引用与之关联一样，在任何时候都可能被垃圾回收器回收。</p>
+<p>那么这样就很容易产生疑问了，虚引用的作用又是什么呢？</p>
+<p>作用就是能在这个对象被收集器回收时收到一个系统通知，实现追踪垃圾收集器的回收动作，比如在对象被回收的时候，会调用该对象的finalize方法。</p>
+<p>在给出相关demo前，要先介绍一个</p>
+<p><strong>ReferenceQueue 引用队列</strong></p>
+<p>ReferenceQueue 引用其实也可以归纳为引用中的一员，可以和上述三种引用类型组合使用【软引用、弱引用、虚引用】。</p>
+<p>那么它有何作呢？</p>
+<p>在创建Reference时，手动将Queue注册到Reference中，而当该Reference所引用的对象被垃圾收集器回收时，JVM会将该Reference放到该队列中，而我们便可以对该队列做些其他业务，相当于一种通知机制。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PhantomReferenceDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ReferenceQueue</span> <span class="variable">referenceQueue</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReferenceQueue</span>();</span><br><span class="line"></span><br><span class="line">        PhantomReference&lt;Object&gt; phantomReference = <span class="keyword">new</span> <span class="title class_">PhantomReference</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;I am here&quot;</span>), referenceQueue);</span><br><span class="line">        System.out.println(<span class="string">&quot;phantomReference.get():&quot;</span> + phantomReference.get());</span><br><span class="line"></span><br><span class="line">        System.gc();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Reference&lt;?&gt; reference;</span><br><span class="line">        <span class="keyword">while</span> ((reference = referenceQueue.poll()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (reference == phantomReference) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;被回收了...&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>插曲：IDEA打印GC日志的方法，在vm选项中添加<code>-XX:+PrintGCDetails</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">phantomReference.get():null</span><br><span class="line">被回收了...</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<p>我们可以从结果中看到先是从引用中get出来的对象为null，证明上面说的无法通过虚引用来获取一个对象的实例，并且在回收后会被放入队列中。</p>
+<h4 id="和Reference相关的概念"><a href="#和Reference相关的概念" class="headerlink" title="和Reference相关的概念"></a>和Reference相关的概念</h4><p>首先为了方便JVM进行管理，Reference是有状态的，可以分为以下四种状态</p>
+<ul>
+<li>active  一般来说内存一开始被分配的状态，而当被引用的对象的可达性发生变化后gc就会将引用放入pending队列并将其状态改为pending状态。</li>
+<li>pending 指的是准备要被放进pending队列的对象。</li>
+<li>enqueue 指的是对象的内存已经被回收了。</li>
+<li>inactive 这是最终的状态，不能再变为其它状态。</li>
+</ul>
+<h4 id="JVM怎么知道引用在不在"><a href="#JVM怎么知道引用在不在" class="headerlink" title="JVM怎么知道引用在不在"></a>JVM怎么知道引用在不在</h4><p>关于JVM怎么知道引用在不在，这就涉及到了JVM的可达性分析算法了 JVM的可达性分析算法的简单思路就是通过一系列GC Roots作为出发点，向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链，即表明从GC Roots到这个对象不可达时，证明此对象不可用，可被回收。如下图所示</p>
+<p>哪些对象可以作为GC Roots呢? 这里给出几个，如下:</p>
+<ul>
+<li>虚拟机栈中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈JNI引用的对象</li>
+</ul>
+<p>具体的想要深入研究的可以自行百度&amp;谷歌，或者等我后面深入分析。</p>
+<h4 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h4><p>该篇文章基本解答了【谈谈对Java中几种引用的理解】，如果想要更深入的研究，就要从源码入手了解了。 下次遇见这种面试题，基本上就不慌了，因为实际上只要认真看完该篇文章并且记住几个关键的地方，基本上就不会被面试官问倒了，并且该篇文章后面也解答了【JVM怎么知道引用在不在】和【哪些对象可以作为GC Roots】的问题。</p>
+<h2 id="二、Golang"><a href="#二、Golang" class="headerlink" title="二、Golang"></a>二、Golang</h2><h2 id="三、网络"><a href="#三、网络" class="headerlink" title="三、网络"></a>三、网络</h2><h3 id="3-1-网络协议"><a href="#3-1-网络协议" class="headerlink" title="3.1 网络协议"></a>3.1 网络协议</h3><ul>
+<li><p>请详细描述三次握手和四次挥手的过程</p>
+<p>要求熟悉三次握手和四次挥手的机制，要求画出状态图。</p>
+</li>
+<li><p>四次挥手中TIME_WAIT状态存在的目的是什么?</p>
+<p>这个问题是画出四次挥手状态图，会引申问你。不排除还会问为什么四次挥手是四次不是二次等问题。最好是把相关问题均掌握。</p>
+</li>
+<li><p>TCP是通过什么机制保障可靠性的?</p>
+<p>从四个方面进行回答，ACK确认机制、超时重传、滑动窗口以及流量控制，深入的话要求详细讲出流量控制的机制。</p>
+</li>
+</ul>
+<h2 id="四、操作系统"><a href="#四、操作系统" class="headerlink" title="四、操作系统"></a>四、操作系统</h2><h2 id="五、数据结构与算法"><a href="#五、数据结构与算法" class="headerlink" title="五、数据结构与算法"></a>五、数据结构与算法</h2><h2 id="六、数据库"><a href="#六、数据库" class="headerlink" title="六、数据库"></a>六、数据库</h2><h2 id="七、系统设计"><a href="#七、系统设计" class="headerlink" title="七、系统设计"></a>七、系统设计</h2><h2 id="八、工具"><a href="#八、工具" class="headerlink" title="八、工具"></a>八、工具</h2><h2 id="九、资料"><a href="#九、资料" class="headerlink" title="九、资料"></a>九、资料</h2><h2 id="十、编码实践"><a href="#十、编码实践" class="headerlink" title="十、编码实践"></a>十、编码实践</h2>
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF/" rel="tag"><i class="fa fa-tag"></i> 后端技术</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/05/20/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/19/Apache-Jackrabbit/" rel="next" title="Apache Jackrabbit">
+                  Apache Jackrabbit <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Luomeng1004</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">17k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">15 分钟</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

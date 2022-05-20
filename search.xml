@@ -26,8 +26,98 @@
       </tags>
   </entry>
   <entry>
+    <title>Java成长之路</title>
+    <url>/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/</url>
+    <content><![CDATA[<h1 id="Java成长之路"><a href="#Java成长之路" class="headerlink" title="Java成长之路"></a>Java成长之路</h1><p>[TOC]</p>
+<blockquote>
+<p>闲时之路，忙时有书，阅读丈量世界，一章一篇总关情。</p>
+</blockquote>
+<span id="more"></span>
+
+
+
+<h2 id="一、Java"><a href="#一、Java" class="headerlink" title="一、Java"></a>一、Java</h2><h3 id="1-连引用都答不上，凭什么说你是Java服务端开发"><a href="#1-连引用都答不上，凭什么说你是Java服务端开发" class="headerlink" title="1.连引用都答不上，凭什么说你是Java服务端开发"></a>1.连引用都答不上，凭什么说你是Java服务端开发</h3><p><strong>【划重点】在Java中引用包括：</strong></p>
+<ul>
+<li>FinalReference 强引用</li>
+<li>SoftReference 软引用</li>
+<li>WeakReference 弱引用</li>
+<li>PhantomReference 虚引用</li>
+</ul>
+<p>那么为什么会提供这四种引用呢，主要原因有：</p>
+<ul>
+<li>方便Jvm进行垃圾回收</li>
+<li>方便开发人员使用，开发人员可以灵活的决定某些对象的生命周期</li>
+</ul>
+<h4 id="FinalReference-强引用"><a href="#FinalReference-强引用" class="headerlink" title="FinalReference 强引用"></a>FinalReference 强引用</h4><p>类似于 Object o &#x3D; new Object() 这类的引用，创建一个对象后，该引用会被保存在JVM栈中，而且只要强引用存在，垃圾回收器就不会回收掉被引用的对象。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="SoftReference-软引用"><a href="#SoftReference-软引用" class="headerlink" title="SoftReference 软引用"></a>SoftReference 软引用</h4><p>软引用关联的对象，在内存不够的情况下，会把这些软引用关联的对象列入垃圾回收范围中，然后进行回收，也就是说软引用并非是完全安全的，在内存不够的情况下是会被垃圾回收器回收掉的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SoftReferenceDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">        SoftReference[] softReferences = <span class="keyword">new</span> <span class="title class_">SoftReference</span>[count];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            softReferences[i] = <span class="keyword">new</span> <span class="title class_">SoftReference</span>&lt;TestObject&gt;(<span class="keyword">new</span> <span class="title class_">TestObject</span>(<span class="string">&quot;TestObject-&quot;</span> + i));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            <span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> softReferences[i].get();</span><br><span class="line">            <span class="keyword">if</span> (o == <span class="literal">null</span>) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;null&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                System.out.println(((TestObject) o).name);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestObject</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">byte</span>[] values;</span><br><span class="line">    <span class="keyword">public</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">TestObject</span><span class="params">(String name)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">        values = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span> * <span class="number">1024</span> * <span class="number">500</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过注释便可以知道，我这里实例化了多个大对象，然后放入softReferences数组中，之后便遍历打印出其中的对象的命名，打印结果如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">null</span><br><span class="line">null</span><br><span class="line">null</span><br><span class="line">TestObject-3</span><br><span class="line">TestObject-4</span><br></pre></td></tr></table></figure>
+
+<p>可以通过结果看出，前面四个对象因为内存不够而被垃圾回收器回收了。</p>
+<p><strong>日常使用</strong></p>
+<p>在我司的项目中，部分是使用软引用来保存从数据库中取出的数据，具体是做了一个中间层的封装，该中间层的作用就是在get出数据的时候会去判断数据是否为null，如果是为null再次从数据库读取，读取后再放入软引用的集合中，这样的做法是可以避免内存溢出。</p>
+<h4 id="WeakReference-弱引用"><a href="#WeakReference-弱引用" class="headerlink" title="WeakReference 弱引用"></a>WeakReference 弱引用</h4><p>弱引用比软引用更弱，被弱引用关联的对象只能存活到发生下一次垃圾回收之前，也就是说当发生GC时，无论当前内存是否足够，都会被回收掉。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WeakReferenceDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        WeakReference&lt;String&gt; stringWeakReference = <span class="keyword">new</span> <span class="title class_">WeakReference</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;I am here!&quot;</span>));</span><br><span class="line">        System.out.println(stringWeakReference.get());</span><br><span class="line"></span><br><span class="line">        System.gc();</span><br><span class="line"></span><br><span class="line">        System.out.println(stringWeakReference.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码很简短，就是先构建一个弱引用对象，然后在gc前先打印出来证明它存在过，之后手动调用gc，再次打印，可以看出已经没了。运行结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I am here!</span><br><span class="line">null</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<h4 id="PhantomReference-虚引用"><a href="#PhantomReference-虚引用" class="headerlink" title="PhantomReference 虚引用"></a>PhantomReference 虚引用</h4><p>虚引用和上面不同的地方在于，一个对象是否有虚引用的存在，完全不会对其生存时间构成如何影响，并且也无法通过虚引用来获取一个对象的实例，也就是说跟没有引用与之关联一样，在任何时候都可能被垃圾回收器回收。</p>
+<p>那么这样就很容易产生疑问了，虚引用的作用又是什么呢？</p>
+<p>作用就是能在这个对象被收集器回收时收到一个系统通知，实现追踪垃圾收集器的回收动作，比如在对象被回收的时候，会调用该对象的finalize方法。</p>
+<p>在给出相关demo前，要先介绍一个</p>
+<p><strong>ReferenceQueue 引用队列</strong></p>
+<p>ReferenceQueue 引用其实也可以归纳为引用中的一员，可以和上述三种引用类型组合使用【软引用、弱引用、虚引用】。</p>
+<p>那么它有何作呢？</p>
+<p>在创建Reference时，手动将Queue注册到Reference中，而当该Reference所引用的对象被垃圾收集器回收时，JVM会将该Reference放到该队列中，而我们便可以对该队列做些其他业务，相当于一种通知机制。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PhantomReferenceDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">ReferenceQueue</span> <span class="variable">referenceQueue</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReferenceQueue</span>();</span><br><span class="line"></span><br><span class="line">        PhantomReference&lt;Object&gt; phantomReference = <span class="keyword">new</span> <span class="title class_">PhantomReference</span>&lt;&gt;(<span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;I am here&quot;</span>), referenceQueue);</span><br><span class="line">        System.out.println(<span class="string">&quot;phantomReference.get():&quot;</span> + phantomReference.get());</span><br><span class="line"></span><br><span class="line">        System.gc();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Reference&lt;?&gt; reference;</span><br><span class="line">        <span class="keyword">while</span> ((reference = referenceQueue.poll()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (reference == phantomReference) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;被回收了...&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>插曲：IDEA打印GC日志的方法，在vm选项中添加<code>-XX:+PrintGCDetails</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">phantomReference.get():null</span><br><span class="line">被回收了...</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+
+<p>我们可以从结果中看到先是从引用中get出来的对象为null，证明上面说的无法通过虚引用来获取一个对象的实例，并且在回收后会被放入队列中。</p>
+<h4 id="和Reference相关的概念"><a href="#和Reference相关的概念" class="headerlink" title="和Reference相关的概念"></a>和Reference相关的概念</h4><p>首先为了方便JVM进行管理，Reference是有状态的，可以分为以下四种状态</p>
+<ul>
+<li>active  一般来说内存一开始被分配的状态，而当被引用的对象的可达性发生变化后gc就会将引用放入pending队列并将其状态改为pending状态。</li>
+<li>pending 指的是准备要被放进pending队列的对象。</li>
+<li>enqueue 指的是对象的内存已经被回收了。</li>
+<li>inactive 这是最终的状态，不能再变为其它状态。</li>
+</ul>
+<h4 id="JVM怎么知道引用在不在"><a href="#JVM怎么知道引用在不在" class="headerlink" title="JVM怎么知道引用在不在"></a>JVM怎么知道引用在不在</h4><p>关于JVM怎么知道引用在不在，这就涉及到了JVM的可达性分析算法了 JVM的可达性分析算法的简单思路就是通过一系列GC Roots作为出发点，向下搜索，搜索所走过的路径称为引用链，当一个对象到GC Roots没有任何引用链，即表明从GC Roots到这个对象不可达时，证明此对象不可用，可被回收。如下图所示</p>
+<p>哪些对象可以作为GC Roots呢? 这里给出几个，如下:</p>
+<ul>
+<li>虚拟机栈中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈JNI引用的对象</li>
+</ul>
+<p>具体的想要深入研究的可以自行百度&amp;谷歌，或者等我后面深入分析。</p>
+<h4 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h4><p>该篇文章基本解答了【谈谈对Java中几种引用的理解】，如果想要更深入的研究，就要从源码入手了解了。 下次遇见这种面试题，基本上就不慌了，因为实际上只要认真看完该篇文章并且记住几个关键的地方，基本上就不会被面试官问倒了，并且该篇文章后面也解答了【JVM怎么知道引用在不在】和【哪些对象可以作为GC Roots】的问题。</p>
+<h2 id="二、Golang"><a href="#二、Golang" class="headerlink" title="二、Golang"></a>二、Golang</h2><h2 id="三、网络"><a href="#三、网络" class="headerlink" title="三、网络"></a>三、网络</h2><h3 id="3-1-网络协议"><a href="#3-1-网络协议" class="headerlink" title="3.1 网络协议"></a>3.1 网络协议</h3><ul>
+<li><p>请详细描述三次握手和四次挥手的过程</p>
+<p>要求熟悉三次握手和四次挥手的机制，要求画出状态图。</p>
+</li>
+<li><p>四次挥手中TIME_WAIT状态存在的目的是什么?</p>
+<p>这个问题是画出四次挥手状态图，会引申问你。不排除还会问为什么四次挥手是四次不是二次等问题。最好是把相关问题均掌握。</p>
+</li>
+<li><p>TCP是通过什么机制保障可靠性的?</p>
+<p>从四个方面进行回答，ACK确认机制、超时重传、滑动窗口以及流量控制，深入的话要求详细讲出流量控制的机制。</p>
+</li>
+</ul>
+<h2 id="四、操作系统"><a href="#四、操作系统" class="headerlink" title="四、操作系统"></a>四、操作系统</h2><h2 id="五、数据结构与算法"><a href="#五、数据结构与算法" class="headerlink" title="五、数据结构与算法"></a>五、数据结构与算法</h2><h2 id="六、数据库"><a href="#六、数据库" class="headerlink" title="六、数据库"></a>六、数据库</h2><h2 id="七、系统设计"><a href="#七、系统设计" class="headerlink" title="七、系统设计"></a>七、系统设计</h2><h2 id="八、工具"><a href="#八、工具" class="headerlink" title="八、工具"></a>八、工具</h2><h2 id="九、资料"><a href="#九、资料" class="headerlink" title="九、资料"></a>九、资料</h2><h2 id="十、编码实践"><a href="#十、编码实践" class="headerlink" title="十、编码实践"></a>十、编码实践</h2>]]></content>
+      <tags>
+        <tag>后端技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
-    <url>/2022/05/19/hello-world/</url>
+    <url>/2022/05/20/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
 
@@ -63,6 +153,10 @@
 <p>一是指标体系的作用；</p>
 <p>二是如何构建指标体系；</p>
 <p>三是指标体系的运用。</p>
+<span id="more"></span>
+
+
+
 <h3 id="01-指标体系的作用"><a href="#01-指标体系的作用" class="headerlink" title="01 指标体系的作用"></a>01 指标体系的作用</h3><p>1.1</p>
 <p><strong>为什么需要数据指标体系</strong></p>
 <p>不同行业业务属性不同能收集到的数据也不同，对于核心指标变化原因的理解，每个人的也大不相同，针对核心指标的变化，应该如何回答常见的三个问题呢？</p>
