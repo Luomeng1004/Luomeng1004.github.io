@@ -29,6 +29,15 @@
       </tags>
   </entry>
   <entry>
+    <title>Jackrabbit的可视化</title>
+    <url>/2022/05/20/Jackrabbit%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96/</url>
+    <content><![CDATA[<h2 id="如何可以查看存储在MySQL中的JackRabbit数据"><a href="#如何可以查看存储在MySQL中的JackRabbit数据" class="headerlink" title="如何可以查看存储在MySQL中的JackRabbit数据"></a>如何可以查看存储在MySQL中的JackRabbit数据</h2>]]></content>
+      <tags>
+        <tag>数据库</tag>
+        <tag>Jackrabbit</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java成长之路</title>
     <url>/2022/05/20/Java%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/</url>
     <content><![CDATA[<h1 id="Java成长之路"><a href="#Java成长之路" class="headerlink" title="Java成长之路"></a>Java成长之路</h1><blockquote>
@@ -124,6 +133,8 @@
     <title>Kafka扫盲</title>
     <url>/2022/05/20/Kafka%E6%89%AB%E7%9B%B2/</url>
     <content><![CDATA[<h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><h3 id="一、架构示意图"><a href="#一、架构示意图" class="headerlink" title="一、架构示意图"></a>一、架构示意图</h3><p><img src="https://cbbing-1253804295.cos.ap-shanghai.myqcloud.com/kekefund/kafka_docker01.png" alt="img"></p>
+<span id="more"></span>
+
 <pre><code>一个典型的Kafka集群中包含若干Producer（可以是web前端FET，或者是服务器日志等），若干broker（Kafka支持水平扩展，一般broker数量越多，集群吞吐率越高），若干ConsumerGroup，以及一个Zookeeper集群。
 
 Kafka通过Zookeeper管理Kafka集群配置：选举Kafka broker的leader，以及在Consumer Group发生变化时进行rebalance，因为consumer消费kafka topic的partition的offsite信息是存在Zookeeper的。
@@ -203,6 +214,7 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
 ]]></content>
       <tags>
         <tag>后端技术</tag>
+        <tag>消息队列</tag>
       </tags>
   </entry>
   <entry>
