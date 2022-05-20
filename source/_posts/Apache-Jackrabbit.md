@@ -2,6 +2,7 @@
 title: Apache Jackrabbit
 date: 2022-05-20 00:28:41
 tags: 数据库
+categories: 职业技能
 ---
 
 ## Apache Jackrabbit
