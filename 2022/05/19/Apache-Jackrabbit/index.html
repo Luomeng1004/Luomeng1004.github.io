@@ -20,18 +20,21 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"luomeng1004.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Apache Jackrabbit配置仓库配置12345678910111213&lt;!DOCTYPE Repository	  PUBLIC &quot;-&#x2F;&#x2F;The Apache Software Foundation&#x2F;&#x2F;DTD Jackrabbit 1.5&#x2F;&#x2F;EN&quot;	  &quot;http:&#x2F;&#x2F;jackrabbit.apache.org&#x2F;dtd&#x2F;repository-1.5.d">
+    <meta name="description" content="什么是Jackrabbit JackRabbit就是一种面向文档的数据库，它和MongoDB，CouchDB的功能十分接近，优势在于JackRabbit遵从JCR标准，日后可以迁移到其他同样兼容JCR的性能更好的商业解决方案上。 Jackrabbit（内容仓库）是一个高级的信息管理系统，该系统是传统的数据仓库的扩展，它提供了诸如版本控制、全文检索、访问控制、内容分类、内容事件监视等内容服务。Jac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache Jackrabbit">
 <meta property="og:url" content="https://luomeng1004.github.io/2022/05/19/Apache-Jackrabbit/index.html">
 <meta property="og:site_name" content="风雨都很大">
-<meta property="og:description" content="Apache Jackrabbit配置仓库配置12345678910111213&lt;!DOCTYPE Repository	  PUBLIC &quot;-&#x2F;&#x2F;The Apache Software Foundation&#x2F;&#x2F;DTD Jackrabbit 1.5&#x2F;&#x2F;EN&quot;	  &quot;http:&#x2F;&#x2F;jackrabbit.apache.org&#x2F;dtd&#x2F;repository-1.5.d">
+<meta property="og:description" content="什么是Jackrabbit JackRabbit就是一种面向文档的数据库，它和MongoDB，CouchDB的功能十分接近，优势在于JackRabbit遵从JCR标准，日后可以迁移到其他同样兼容JCR的性能更好的商业解决方案上。 Jackrabbit（内容仓库）是一个高级的信息管理系统，该系统是传统的数据仓库的扩展，它提供了诸如版本控制、全文检索、访问控制、内容分类、内容事件监视等内容服务。Jac">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img.boomclap.cn/uPic/202205/1653137914772zC6aqK.png">
+<meta property="og:image" content="http://img.boomclap.cn/uPic/202205/1653137789714eLYcJV.jpg">
 <meta property="article:published_time" content="2022-05-19T16:28:41.000Z">
-<meta property="article:modified_time" content="2022-05-21T05:06:54.580Z">
+<meta property="article:modified_time" content="2022-05-21T15:25:16.284Z">
 <meta property="article:author" content="Luomeng1004">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.boomclap.cn/uPic/202205/1653137914772zC6aqK.png">
 
 
 <link rel="canonical" href="https://luomeng1004.github.io/2022/05/19/Apache-Jackrabbit/">
@@ -91,7 +94,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -148,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-Jackrabbit"><span class="nav-number">1.</span> <span class="nav-text">Apache Jackrabbit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.1.</span> <span class="nav-text">仓库配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">配置中的变量</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFJackrabbit"><span class="nav-number">1.</span> <span class="nav-text">什么是Jackrabbit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFJCR"><span class="nav-number">2.</span> <span class="nav-text">什么是JCR</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JCR%E7%9A%84%E5%86%85%E5%AE%B9%E4%BB%93%E5%BA%93%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.1.</span> <span class="nav-text">JCR的内容仓库模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JCR-API"><span class="nav-number">2.2.</span> <span class="nav-text">JCR API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E4%BD%BF%E7%94%A8JCR%E5%BC%95%E6%93%8E"><span class="nav-number">3.</span> <span class="nav-text">为什么要用使用JCR引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">如何使用？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%93%E5%BA%93%E9%85%8D%E7%BD%AE"><span class="nav-number">4.0.1.</span> <span class="nav-text">仓库配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%B8%AD%E7%9A%84%E5%8F%98%E9%87%8F"><span class="nav-number">4.0.2.</span> <span class="nav-text">配置中的变量</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -163,7 +166,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,7 +177,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -250,7 +253,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-21 13:06:54" itemprop="dateModified" datetime="2022-05-21T13:06:54+08:00">2022-05-21</time>
+      <time title="修改时间：2022-05-21 23:25:16" itemprop="dateModified" datetime="2022-05-21T23:25:16+08:00">2022-05-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -268,14 +271,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>909</span>
+      <span>3.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -286,7 +289,111 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="Apache-Jackrabbit"><a href="#Apache-Jackrabbit" class="headerlink" title="Apache Jackrabbit"></a>Apache Jackrabbit</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="仓库配置"><a href="#仓库配置" class="headerlink" title="仓库配置"></a>仓库配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">Repository</span></span></span><br><span class="line"><span class="meta">	  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//The Apache Software Foundation//DTD Jackrabbit 1.5//EN&quot;</span></span></span><br><span class="line"><span class="meta">	  <span class="string">&quot;http://jackrabbit.apache.org/dtd/repository-1.5.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">FileSystem</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Security</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Workspaces</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Workspace</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Versioning</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">SearchIndex</span> <span class="attr">...</span>/&gt;</span>  <span class="comment">&lt;!-- optional --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Cluster</span> <span class="attr">...</span>/&gt;</span>	  <span class="comment">&lt;!-- optional, available since 1.2 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">DataStore</span> <span class="attr">...</span>/&gt;</span>	  <span class="comment">&lt;!-- optional, available since 1.4 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Repository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="什么是Jackrabbit"><a href="#什么是Jackrabbit" class="headerlink" title="什么是Jackrabbit"></a>什么是Jackrabbit</h2><blockquote>
+<p>JackRabbit就是一种面向文档的数据库，它和MongoDB，CouchDB的功能十分接近，优势在于JackRabbit遵从JCR标准，日后可以迁移到其他同样兼容JCR的性能更好的商业解决方案上。</p>
+<p>Jackrabbit（内容仓库）是一个高级的信息管理系统，该系统是传统的数据仓库的扩展，它提供了诸如版本控制、全文检索、访问控制、内容分类、内容事件监视等内容服务。Jackrabbit里面有一个DataStore类，该类有两个实现，DbDataStore和FileDataStore，可以保存元数据和二进制数据。</p>
+</blockquote>
+<span id="more"></span>
+
+
+
+<h2 id="什么是JCR"><a href="#什么是JCR" class="headerlink" title="什么是JCR"></a>什么是JCR</h2><p>Java Content Repository API（JSR-170）试图建立一套标准的API去访问内容仓库。</p>
+<p>内容仓库可以理解为一个用来存储文本和二进制数据（图片，word文档，PDF等等）的数据存储应用程序。<br>你不用关心你真正的数据到底存储在什么地方，是关系数据库？是文件系统？还是XML？<br>通过JSR-170，你开发代码只需要引用 javax.jcr.* 这些类和接口。它适用于任何兼容JSR-170规范的内容仓库。</p>
+<p><strong>JSR-170 API对不同的人员提供了不同的好处</strong></p>
+<ul>
+<li>对于开发者无需了解厂家的仓库特定的API，只要兼容JSR-170就可以通过JSR-170访问其仓库。</li>
+<li>对于使用CMS的公司则无需花费资金用于在不同种类CMS的内容仓库之间进行转换。</li>
+<li>对于CMS厂家，无需自己开发内容仓库，而专注于开发CMS应用。</li>
+</ul>
+<h3 id="JCR的内容仓库模型"><a href="#JCR的内容仓库模型" class="headerlink" title="JCR的内容仓库模型"></a>JCR的内容仓库模型</h3><ul>
+<li>JCR的内容仓库是一个树状结构</li>
+<li>树上的元素（Item）分为两类：节点（node）和属性（property）。</li>
+<li>1个节点：有且只有一个父亲，有任意数目的孩子（子节点）和任意数目的属性。</li>
+<li>1个属性：有且只有一个父亲（节点），它没有子节点，由一个名字和一个或多个值组成。</li>
+<li>属性值的类型可以是：布尔（Boolean）、日期（Date）、双精度（Double）、长整型（Long）、字符串（String）或流（Stream）。</li>
+<li>属性可以被用来存储信息，节点则被用来创建树内部的“路径”（类似文件系统的结构，节点是目录，属性是实际的文件）</li>
+</ul>
+<img src="http://img.boomclap.cn/uPic/202205/1653137914772zC6aqK.png" alt="image-20220521205834607" style="zoom:50%;" />
+
+<p>​		从上面的图中不难发现，根节点下有多个子节点a、b、c，每个子节点下面又会有多个子节点或属性。例如：a节点下有两个子节点d和e，而e含有两个属性节点j和k，属性j包含了一幅图片，属性k为一个浮点数字；同样的属性g包含了一段字符串而属性h则包含了一个整型数字。</p>
+<p>　　上面图中的每个节点都可以通过他们在层次结构中的绝对路径来唯一标识。例如：“&#x2F;”可以定位到根节点，而路径&#x2F;a&#x2F;d&#x2F;i则引用了值为“ture”的属性 i。同时绝对路径总是以“&#x2F;”开始的，而相对路径则是以层次中的某个节点为参考物的。例如：相对于&#x2F;a而言，我们可以通过d&#x2F;i来定位到值为“true” 的属性i。</p>
+<p>从对象关系角度上看，因为节点和属性含有很多共性的同时又有各自的特点，因而他们在扩展了Item接口的同时增加了自己独特的方法。我们可以用UML图（1-3）来表示他们之间的关系：</p>
+<p><img src="http://img.boomclap.cn/uPic/202205/1653137789714eLYcJV.jpg" alt="img"></p>
+<p>从UML图中我们不难看出，Node和Property都是Item的子类，每个Property节点有且只有一个Node类型的父节点，而每个Node节点只能有0个（根节点）或一个Node父节点，以及多个Item子节点。</p>
+<h3 id="JCR-API"><a href="#JCR-API" class="headerlink" title="JCR API"></a>JCR API</h3><p>使用JCR API时，为了更容易的完成JCR更换，同时尽可能的减少代码变动，建议使用来自javax.jcr包的接口。</p>
+<p>Jcr的包结构介绍如下表：</p>
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Javax.jcr</td>
+<td>java技术下内容管理的接口和类</td>
+</tr>
+<tr>
+<td>Javax.jcr.lock</td>
+<td>内容管理锁功能需要的接口和类</td>
+</tr>
+<tr>
+<td>Javax.jcr.nodetype</td>
+<td>对内部节点操作相关的功能</td>
+</tr>
+<tr>
+<td>Javax.jcr.obeservation</td>
+<td>事件订阅处理相关的功能</td>
+</tr>
+<tr>
+<td>Javax.jcr.query</td>
+<td>内容查询相关的功能</td>
+</tr>
+<tr>
+<td>Javax.jcr.query.qom</td>
+<td>内容查询的对象模型定义</td>
+</tr>
+<tr>
+<td>Javax.jcr.retention</td>
+<td>保持管理相关的功能</td>
+</tr>
+<tr>
+<td>Javax.jcr.security</td>
+<td>访问控制管理相关的功能</td>
+</tr>
+<tr>
+<td>Javax.jcr.util</td>
+<td>通用帮助类</td>
+</tr>
+<tr>
+<td>Javax.jcr.version</td>
+<td>版本控制相关的功能</td>
+</tr>
+</tbody></table>
+<p>在jcr中，一个Repository对象代表了整个仓库，客户端可以通过Repository.login方法连接到仓库，连接时可以指定一个工作空间和相关凭证。Login方法返回一个Session对象，它代表客户端和仓库之间的连接，该对象同时还封装了登录用户的授权集合以及到可访问工作空间的绑定。工作空间与Session之间是一一对应的关系，我们可以把工作空间看作是当前用户授权集合下能够访问到的内容实体的视图。</p>
+<p>常用的接口</p>
+<ul>
+<li>Node Session.getRootNode()：获取根节点，通过该节点可以访问该Session对象有权限访问的所有节点</li>
+<li>Node Node.getNode(String relPath)：通过相对路径获取到某节点</li>
+<li>Node Node.addNode(String node)：为Node对象添加子节点</li>
+<li>Void Node.remove()：删除节点对象</li>
+<li>Property Node.getProperty(String relPath)：通过相对路径获取属性对象</li>
+<li>Void Node.setProperty(String name, String value)：为Node对象设置属性值</li>
+<li>String Property.getString()：获取属性对象的值</li>
+<li>Value Property.getValue()：获取对属性对象值的原类型封装对象</li>
+<li>String Value.getString()：获取属性值封装对象的实际数据值</li>
+<li>Item Session.getItem(String abspath)：通过绝对路径直接定位到某节点对象</li>
+<li>Void Session.save()：持久化Session对象</li>
+<li>Node Session.getNodeByUUID(String uuid)：通过全局唯一定位符直接定位到有唯一定位符的节点对象</li>
+</ul>
+<h2 id="为什么要用使用JCR引擎"><a href="#为什么要用使用JCR引擎" class="headerlink" title="为什么要用使用JCR引擎"></a>为什么要用使用JCR引擎</h2><blockquote>
+<p>究竟该使用JCR引擎，还是直接使用关系型数据库？</p>
+</blockquote>
+<ul>
+<li>JCR适合数据浏览（Navigation）和版本化信息查询（Versioning），而RDBMS适合复杂联合查询</li>
+<li>关系型SQL很强大，但在需要查询整个树状数据时，则需要使用其它模型，另外关系型数据对于版本控制以及访问控制的支持也不好</li>
+</ul>
+<h2 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h2><h4 id="仓库配置"><a href="#仓库配置" class="headerlink" title="仓库配置"></a>仓库配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">Repository</span></span></span><br><span class="line"><span class="meta">	  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//The Apache Software Foundation//DTD Jackrabbit 1.5//EN&quot;</span></span></span><br><span class="line"><span class="meta">	  <span class="string">&quot;http://jackrabbit.apache.org/dtd/repository-1.5.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">FileSystem</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Security</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Workspaces</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Workspace</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Versioning</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">SearchIndex</span> <span class="attr">...</span>/&gt;</span>  <span class="comment">&lt;!-- optional --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Cluster</span> <span class="attr">...</span>/&gt;</span>	  <span class="comment">&lt;!-- optional, available since 1.2 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">DataStore</span> <span class="attr">...</span>/&gt;</span>	  <span class="comment">&lt;!-- optional, available since 1.4 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Repository</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li><a target="_blank" rel="noopener" href="https://jackrabbit.apache.org/jcr/jackrabbit-configuration.html#file-system-configuration">FileSystem</a>: 存储库用来存储注册名称空间和节点类型等内容的虚拟文件系统</li>
@@ -361,14 +468,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">25k</span>
+    <span title="站点总字数">28k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">23 分钟</span>
+    <span title="站点阅读时长">25 分钟</span>
   </span>
 </div>
 
