@@ -22,7 +22,7 @@
 </ul>
 ]]></content>
       <categories>
-        <category>职业技能</category>
+        <category>后端技术</category>
       </categories>
       <tags>
         <tag>数据库</tag>
@@ -123,10 +123,10 @@
 </ul>
 <h2 id="四、操作系统"><a href="#四、操作系统" class="headerlink" title="四、操作系统"></a>四、操作系统</h2><h2 id="五、数据结构与算法"><a href="#五、数据结构与算法" class="headerlink" title="五、数据结构与算法"></a>五、数据结构与算法</h2><h2 id="六、数据库"><a href="#六、数据库" class="headerlink" title="六、数据库"></a>六、数据库</h2><h2 id="七、系统设计"><a href="#七、系统设计" class="headerlink" title="七、系统设计"></a>七、系统设计</h2><h2 id="八、工具"><a href="#八、工具" class="headerlink" title="八、工具"></a>八、工具</h2><h2 id="九、资料"><a href="#九、资料" class="headerlink" title="九、资料"></a>九、资料</h2><h2 id="十、编码实践"><a href="#十、编码实践" class="headerlink" title="十、编码实践"></a>十、编码实践</h2>]]></content>
       <categories>
-        <category>职业技能</category>
+        <category>后端技术</category>
       </categories>
       <tags>
-        <tag>后端技术</tag>
+        <tag>成长之路</tag>
       </tags>
   </entry>
   <entry>
@@ -212,14 +212,40 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
 
 <h4 id="3-元数据"><a href="#3-元数据" class="headerlink" title="3.元数据"></a>3.元数据</h4><figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">metadata_test</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;metadata test\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">    config := sarama.NewConfig()</span><br><span class="line">    config.Version = sarama.V0_11_0_2</span><br><span class="line"></span><br><span class="line">    client, err := sarama.NewClient([]<span class="type">string</span>&#123;<span class="string">&quot;localhost:9092&quot;</span>&#125;, config)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;metadata_test try create client err :%s\n&quot;</span>, err.Error())</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">defer</span> client.Close()</span><br><span class="line"></span><br><span class="line">    <span class="comment">// get topic set</span></span><br><span class="line">    topics, err := client.Topics()</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;try get topics err %s\n&quot;</span>, err.Error())</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fmt.Printf(<span class="string">&quot;topics(%d):\n&quot;</span>, <span class="built_in">len</span>(topics))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> _, topic := <span class="keyword">range</span> topics &#123;</span><br><span class="line">        fmt.Println(topic)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// get broker set</span></span><br><span class="line">    brokers := client.Brokers()</span><br><span class="line">    fmt.Printf(<span class="string">&quot;broker set(%d):\n&quot;</span>, <span class="built_in">len</span>(brokers))</span><br><span class="line">    <span class="keyword">for</span> _, broker := <span class="keyword">range</span> brokers &#123;</span><br><span class="line">        fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, broker.Addr())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>后端技术</category>
+      </categories>
       <tags>
-        <tag>后端技术</tag>
         <tag>消息队列</tag>
       </tags>
   </entry>
   <entry>
+    <title>React学习笔记</title>
+    <url>/2022/05/20/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="React的工作方式"><a href="#React的工作方式" class="headerlink" title="React的工作方式"></a>React的工作方式</h2><h3 id="React的理念"><a href="#React的理念" class="headerlink" title="React的理念"></a>React的理念</h3><blockquote>
+<p>打一个比方，React是一个聪明的建筑工人，而jQuery是一个比较傻的建筑工人，开发者你就是一个建筑的设计师，如果是jQuery这个建筑工人为你工作，你不得不事无巨细地告诉jQuery“如何去做”，要告诉他这面墙要拆掉重建，那面墙上要新开一个窗户，反之，如果是React这个建筑工人为你工作，你所要做的就是告诉这个工人“我想要什么样子”，只要把图纸递给React这个工人，他就会替你搞定一切，当然他不会把整个建筑拆掉重建，而是很聪明地把这次的图纸和上次的图纸做一个对比，发现不同之处，然后只去做适当的修改就完成任务了。</p>
+</blockquote>
+<span id="more"></span>
+
+
+
+<p>React的理念，归结为一个公式，就像下面这样：</p>
+<p>UI＝render（data）</p>
+<p>让我们来看看这个公式表达的含义，用户看到的界面（UI），应该是一个函数（在这里叫render）的执行结果，只接受数据（data）作为参数。这个函数是一个纯函数，所谓纯函数，指的是没有任何副作用，输出完全依赖于输入的函数，两次函数调用如果输入相同，得到的结果也绝对相同。如此一来，最终的用户界面，在render函数确定的情况下完全取决于输入数据。</p>
+<p>对于开发者来说，重要的是区分开哪些属于data，哪些属于render，想要更新用户界面，要做的就是更新data，用户界面自然会做出响应，所以React实践的也是“响应式编程”（Reactive Programming）的思想，这也就是React为什么叫做React的原因。</p>
+<h3 id="Virtual-DOM"><a href="#Virtual-DOM" class="headerlink" title="Virtual DOM"></a>Virtual DOM</h3><p>React利用Virtual DOM，让每次渲染都只重新渲染最少的DOM元素。</p>
+<p>DOM树是对HTML的抽象，那Virtual DOM就是对DOM树的抽象。Virutal DOM不会触及浏览器的部分，只是存在于JavaScript空间的树形结构，每次自上而下渲染React组件时，会对比这一次产生的Virtual DOM和上一次渲染的Virtual DOM，对比就会发现差别，然后修改真正的DOM树时就只需要触及差别中的部分就行。</p>
+]]></content>
+      <categories>
+        <category>前端技术</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
-    <url>/2022/05/20/hello-world/</url>
+    <url>/2022/05/21/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
 
@@ -250,6 +276,405 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
 ]]></content>
       <tags>
         <tag>投资的艺术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>札记</title>
+    <url>/2022/05/20/%E6%9C%AD%E8%AE%B0/</url>
+    <content><![CDATA[<blockquote>
+<p>读书其实没什么用，但它能让人平静。平静这种心情，在这样躁动的年代，是一种精神药物。书，摆在书架上，就像是一颗颗药丸。各有不同的功效，治各种不同的精神创伤。</p>
+<p>你问我，读书有什么用？我想，就像是你吃一个桃子，桃子吃完了，桃核扔了。你以为一切都已经结束了，但第二年才发现，桃核破土而出，长出了新的桃树苗。</p>
+<p>这种奇异的美妙，就像是相忘于江湖后，还有种相濡以沫的藕断丝连。</p>
+</blockquote>
+<span id="more"></span>
+
+
+
+<h2 id="过往"><a href="#过往" class="headerlink" title="过往"></a>过往</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作者</th>
+<th>年份</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://book.douban.com/subject/35049755/">索拉里斯星</a></td>
+<td>[波] 斯坦尼斯瓦夫·莱姆</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35093361/">中台产品经理宝典：从业务建模到中台设计全攻略</a></td>
+<td>刘天</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35031587/">绝叫</a></td>
+<td>[日] 叶真中显</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35390390/">字母表谜案</a></td>
+<td>大山诚一郎</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35494160/">挽救计划</a></td>
+<td>[美] 安迪·威尔</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/1872158/">蝇王</a></td>
+<td>[英] 威廉·戈尔丁</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35094680/">桶川跟踪狂杀人事件</a></td>
+<td>[日] 清水洁</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35606837/">装修常用数据手册 : 空间布局和尺寸</a></td>
+<td>尤呢呢</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35511433/">装修，做好三件事就够了</a></td>
+<td>王奕龙 &#x2F; 后浪</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35611477/">要钱还是要生活 : 没有财务自由，也能提前退休</a></td>
+<td>(美) 维姬·罗宾、(美) 乔·多明格斯</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/30143251/">老后破产 : 名为“长寿”的噩梦</a></td>
+<td>日本NHK特别节目录制组</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/34996429/">消失的13级台阶</a></td>
+<td>[日] 高野和明 &#x2F; 赵建勋</td>
+<td>2022</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35005062/">银河系边缘的小失常</a></td>
+<td>[以色列] 埃特加·凯雷特</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35562179/">天堂旅行团</a></td>
+<td>张嘉佳</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35275855/">小懒财富自由之路：从基金开始</a></td>
+<td>小懒</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/34996662/">低智商犯罪</a></td>
+<td>紫金陈</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/27104999/">癌症·新知：科学终结恐慌</a></td>
+<td>李治中（菠萝）</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26923390/">长夜难明 : 紫金陈“推理之王”第3部</a></td>
+<td>紫金陈</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/30277179/">打开一颗心 : 一位心外科医生手术台前的生死故事</a></td>
+<td>[英] 斯蒂芬·韦斯塔比</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/3608208/">牧羊少年奇幻之旅</a></td>
+<td>[巴西] 保罗·柯艾略</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/27120450/">真相推理师：凶宅</a></td>
+<td>呼延云</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26706730/">肠子的小心思</a></td>
+<td>[德]朱莉娅·恩德斯</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26723423/">动物园</a></td>
+<td>[日] 乙一 &#x2F; 张筱森</td>
+<td>2021</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/35179866/">够笑一年的奇葩人体冷知识</a></td>
+<td>SME</td>
+<td>2020</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/27099114/">躺着赚钱 : 一看就懂的懒人理财盈利技巧</a></td>
+<td>季凯帆、康峰</td>
+<td>2020</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/10828002/">游戏改变世界 : 游戏化如何让现实变得更美好</a></td>
+<td>[美] 简•麦戈尼格尔（Jane McGonigal）</td>
+<td>2020</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26810905/">曾国藩：又笨又慢平天下</a></td>
+<td>度阴山</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/24749465/">断舍离</a></td>
+<td>山下英子</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/25825590/">随遇而安</a></td>
+<td>孟非</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26811407/">殉罪者</a></td>
+<td>雷米</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26934555/">法医秦明作品集 : 幸存者+清道夫+尸语者+无声的证词+第十一根手指</a></td>
+<td>秦明</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/1770782/">追风筝的人</a></td>
+<td>[美] 卡勒德·胡赛尼</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26612116/">真相推理师：幸存</a></td>
+<td>呼延云</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/4913064/">活着</a></td>
+<td>余华</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/25742211/">上帝掷骰子吗? : 量子物理史话</a></td>
+<td>曹天元</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26652880/">遗落的南境1：湮灭</a></td>
+<td>[美] 杰夫·范德米尔</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/1916726/">鬼吹灯之龙岭迷窟</a></td>
+<td>天下霸唱</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/1938591/">鬼吹灯之昆仑神宫</a></td>
+<td>天下霸唱</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/3034184/">鬼吹灯Ⅱ之四巫峡棺山</a></td>
+<td>天下霸唱</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/2340300/">鬼吹灯Ⅱ之三·怒晴湘西</a></td>
+<td>天下霸唱</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/2265312/">鬼吹灯Ⅱ之二·南海归墟</a></td>
+<td>天下霸唱</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/2149655/">鬼吹灯Ⅱ之一·黄皮子坟</a></td>
+<td>天下霸唱</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/6859776/">男人帮</a></td>
+<td>唐浚</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/4725541/">大漠苍狼 : 绝地勘探</a></td>
+<td>南派三叔</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/27088736/">心理罪·教化场</a></td>
+<td>雷米</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/27088738/">心理罪·城市之光</a></td>
+<td>雷米</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/27088735/">心理罪·画像</a></td>
+<td>雷米</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/27088739/">心理罪·第七个读者</a></td>
+<td>雷米</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/27088737/">心理罪·暗河</a></td>
+<td>雷米</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26930033/">余罪8 : 一个传奇警察和毒贩、悍匪、黑道大佬的交锋实录</a></td>
+<td>常书欣</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26904479/">余罪7 : 我的刑侦笔记</a></td>
+<td>常书欣</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26858009/">余罪6 : 我的刑侦笔记6</a></td>
+<td>常书欣</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/1485224/">悟空传</a></td>
+<td>今何在</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26953606/">人类简史 : 从动物到上帝</a></td>
+<td>[以] 尤瓦尔·赫拉利</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26671008/">摸金校尉之九幽将军</a></td>
+<td>天下霸唱</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/25957816/">悖论13</a></td>
+<td>东野圭吾</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/25884890/">死亡通知单·暗黑者</a></td>
+<td>周浩晖</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/1948901/">盗墓笔记 : 七星鲁王宫</a></td>
+<td>南派三叔</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26604034/">真相推理师：嬗变</a></td>
+<td>呼延云</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/27043811/">愿你迷路到我身旁</a></td>
+<td>蕊希</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/6518605/">三体全集 : 地球往事三部曲</a></td>
+<td>刘慈欣</td>
+<td>2018</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26665723/">情人</a></td>
+<td>渡边淳一</td>
+<td>2018</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/25747921/">从你的全世界路过 : 让所有人心动的故事</a></td>
+<td>张嘉佳</td>
+<td>2018</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/26694140/">晚清最后十八年 : 从甲午战争到辛亥革命</a></td>
+<td>黄治军</td>
+<td>2018</td>
+</tr>
+<tr>
+<td>余罪</td>
+<td>常书欣</td>
+<td>2018</td>
+</tr>
+<tr>
+<td>美国众神</td>
+<td>[英] 尼尔·盖曼 &#x2F; 戚林</td>
+<td>2018</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/3879026/">死亡通知单</a></td>
+<td>周浩晖</td>
+<td>2017</td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/1485495/">楼下的房客</a></td>
+<td>九把刀</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://book.douban.com/subject/25924253/">嫌疑人X的献身</a></td>
+<td>[日]东野圭吾</td>
+<td>2016</td>
+</tr>
+<tr>
+<td>解忧杂货店</td>
+<td>[日]东野圭吾</td>
+<td>2016</td>
+</tr>
+<tr>
+<td>惊天奇案</td>
+<td>何马</td>
+<td>2015</td>
+</tr>
+<tr>
+<td>藏地密码1-10</td>
+<td>何马</td>
+<td>2015</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>札记</category>
+      </categories>
+      <tags>
+        <tag>读书笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -541,7 +966,7 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
 <p>笔者所在公司的指标配置是一个独立的平台，在设计内部 AB 测试平台指标配置能力时，我们直接复用了指标管理平台的能力。在指标统计口径上做到了完全复用，保障了指标口径的统一。AB 测试平台负责在实验统计模型方面沉淀数据应用，如常见的实验样本量的计算、实验指标的显著性和置信区间的计算等。期待下期给大家分享这些统计模型的实现方式。</p>
 ]]></content>
       <categories>
-        <category>职业技能</category>
+        <category>业务领域</category>
       </categories>
       <tags>
         <tag>数据中台</tag>
