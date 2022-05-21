@@ -107,6 +107,7 @@
 <li>JCR适合数据浏览（Navigation）和版本化信息查询（Versioning），而RDBMS适合复杂联合查询</li>
 <li>关系型SQL很强大，但在需要查询整个树状数据时，则需要使用其它模型，另外关系型数据对于版本控制以及访问控制的支持也不好</li>
 </ul>
+<p>TODO</p>
 <h2 id="如何使用？"><a href="#如何使用？" class="headerlink" title="如何使用？"></a>如何使用？</h2><h4 id="仓库配置"><a href="#仓库配置" class="headerlink" title="仓库配置"></a>仓库配置</h4><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">Repository</span></span></span><br><span class="line"><span class="meta">	  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//The Apache Software Foundation//DTD Jackrabbit 1.5//EN&quot;</span></span></span><br><span class="line"><span class="meta">	  <span class="string">&quot;http://jackrabbit.apache.org/dtd/repository-1.5.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">FileSystem</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Security</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Workspaces</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Workspace</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Versioning</span> <span class="attr">...</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">SearchIndex</span> <span class="attr">...</span>/&gt;</span>  <span class="comment">&lt;!-- optional --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Cluster</span> <span class="attr">...</span>/&gt;</span>	  <span class="comment">&lt;!-- optional, available since 1.2 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">DataStore</span> <span class="attr">...</span>/&gt;</span>	  <span class="comment">&lt;!-- optional, available since 1.4 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Repository</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -359,14 +360,6 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
       </tags>
   </entry>
   <entry>
-    <title>hexo使用手册</title>
-    <url>/2022/05/21/hexo%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2022/05/18/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -389,6 +382,14 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
       <categories>
         <category>测试</category>
       </categories>
+  </entry>
+  <entry>
+    <title>hexo使用手册</title>
+    <url>/2022/05/21/hexo%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>投资的艺术</title>
