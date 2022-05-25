@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.font.im/css?family=HarmonyOS_Regular:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"luomeng1004.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="“差劲的程序员操心代码，优秀的程序员操心数据结构和它们之间的关系。” —Linus Torvalds，Linux创始人  毫无疑问，如何组织数据是程序的最重要问题。 React组件的数据分为两种，prop和state，无论prop或者state的改变，都可能引发组件的重新渲染，那么，设计一个组件的时候，什么时候选择用prop什么时候选择用state呢？其实原则很简单，prop是组件的对外接口，s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入浅出React和Redux——React组件的数据">
+<meta property="og:url" content="https://luomeng1004.github.io/2022/05/25/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact%E5%92%8CRedux%E2%80%94%E2%80%94React%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:site_name" content="风雨都很大">
+<meta property="og:description" content="“差劲的程序员操心代码，优秀的程序员操心数据结构和它们之间的关系。” —Linus Torvalds，Linux创始人  毫无疑问，如何组织数据是程序的最重要问题。 React组件的数据分为两种，prop和state，无论prop或者state的改变，都可能引发组件的重新渲染，那么，设计一个组件的时候，什么时候选择用prop什么时候选择用state呢？其实原则很简单，prop是组件的对外接口，s">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-25T06:25:16.000Z">
+<meta property="article:modified_time" content="2022-05-25T09:51:19.388Z">
+<meta property="article:author" content="Luomeng1004">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://luomeng1004.github.io/2022/05/25/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact%E5%92%8CRedux%E2%80%94%E2%80%94React%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://luomeng1004.github.io/2022/05/25/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact%E5%92%8CRedux%E2%80%94%E2%80%94React%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE/","path":"2022/05/25/深入浅出React和Redux——React组件的数据/","title":"深入浅出React和Redux——React组件的数据"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>深入浅出React和Redux——React组件的数据 | 风雨都很大</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?72da6c7ff924024cec4a5a095833624f"></script>
+
+
+
+<link rel="preconnect" href="https://s1.hdslb.com/" />
+<link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" media="all" onload="this.media='all'" />
+<link rel="stylesheet" href="//s1.hdslb.com/bfs/static/jinkela/long/font/medium.css" media="all" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">风雨都很大</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">但一切都还好</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#React%E7%9A%84prop"><span class="nav-number">1.</span> <span class="nav-text">React的prop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%99prop%E8%B5%8B%E5%80%BC"><span class="nav-number">1.1.</span> <span class="nav-text">给prop赋值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96prop%E5%80%BC"><span class="nav-number">1.2.</span> <span class="nav-text">读取prop值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#propTypes%E6%A3%80%E6%9F%A5"><span class="nav-number">1.3.</span> <span class="nav-text">propTypes检查</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React%E7%9A%84state"><span class="nav-number">2.</span> <span class="nav-text">React的state</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96state"><span class="nav-number">2.1.</span> <span class="nav-text">初始化state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E5%92%8C%E6%9B%B4%E6%96%B0state"><span class="nav-number">2.2.</span> <span class="nav-text">读取和更新state</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prop%E5%92%8Cstate%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text">prop和state的对比</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Luomeng1004"
+      src="/images/custom-logo.jpeg">
+  <p class="site-author-name" itemprop="name">Luomeng1004</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luomeng1004.github.io/2022/05/25/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact%E5%92%8CRedux%E2%80%94%E2%80%94React%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/custom-logo.jpeg">
+      <meta itemprop="name" content="Luomeng1004">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风雨都很大">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="深入浅出React和Redux——React组件的数据 | 风雨都很大">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          深入浅出React和Redux——React组件的数据
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-05-25 14:25:16 / 修改时间：17:51:19" itemprop="dateCreated datePublished" datetime="2022-05-25T14:25:16+08:00">2022-05-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">前端技术</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/05/25/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact%E5%92%8CRedux%E2%80%94%E2%80%94React%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE/" class="post-meta-item leancloud_visitors" data-flag-title="深入浅出React和Redux——React组件的数据" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>“差劲的程序员操心代码，优秀的程序员操心数据结构和它们之间的关系。”</p>
+<p>—Linus Torvalds，Linux创始人</p>
+</blockquote>
+<p>毫无疑问，如何组织数据是程序的最重要问题。</p>
+<p>React组件的数据分为两种，prop和state，无论prop或者state的改变，都可能引发组件的重新渲染，那么，设计一个组件的时候，什么时候选择用prop什么时候选择用state呢？其实原则很简单，prop是组件的对外接口，state是组件的内部状态，对外用prop，内部用state。</p>
+<span id="more"></span>
+
+
+
+<h3 id="React的prop"><a href="#React的prop" class="headerlink" title="React的prop"></a>React的prop</h3><p>在React中，prop（property的简写）是从外部传递给组件的数据，一个React组件通过定义自己能够接受的prop就定义了自己的对外公共接口。</p>
+<p>每个React组件都是独立存在的模块，组件之外的一切都是外部世界，外部世界就是通过prop来和组件对话的。</p>
+<h4 id="给prop赋值"><a href="#给prop赋值" class="headerlink" title="给prop赋值"></a>给prop赋值</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">SampleButton</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">&quot;sample&quot;</span> <span class="attr">borderWidth</span>=<span class="string">&#123;2&#125;</span> <span class="attr">onClick</span>=<span class="string">&#123;onButtonClick&#125;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&#123;&#123;color:</span> &quot;<span class="attr">red</span>&quot;&#125;&#125;</span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>React组件的prop所能支持的类型则丰富得多，除了字符串，可以是任何一种JavaScript语言支持的数据类型。</p>
+<h4 id="读取prop值"><a href="#读取prop值" class="headerlink" title="读取prop值"></a>读取prop值</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Counter</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">onClickIncrementButton</span> = <span class="variable language_">this</span>.<span class="property">onClickIncrementButton</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">onClickDecrementButton</span> = <span class="variable language_">this</span>.<span class="property">onClickDecrementButton</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">count</span>: props.<span class="property">initValue</span> || <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果一个组件需要定义自己的构造函数，一定要记得在构造函数的第一行通过super调用父类也就是React.Component的构造函数。如果在构造函数中没有调用super（props），那么组件实例被构造之后，类实例的所有成员函数就无法通过this.props访问到父组件传递过来的props值。很明显，给this.props赋值是React.Component构造函数的工作之一。</p>
+<h4 id="propTypes检查"><a href="#propTypes检查" class="headerlink" title="propTypes检查"></a>propTypes检查</h4><p>既然prop是组件的对外接口，那么就应该有某种方式让组件声明自己的接口规范。简单说，一个组件应该可以规范以下这些方面：</p>
+<ul>
+<li><p>这个组件支持哪些prop；</p>
+</li>
+<li><p>每个prop应该是什么样的格式。</p>
+</li>
+</ul>
+<p>React通过propTypes来支持这些功能。</p>
+<p>在ES6方法定义的组件类中，可以通过增加类的propTypes属性来定义prop规格，这不只是声明，而且是一种限制，在运行时和静态代码检查时，都可以根据propTypes判断外部世界是否正确地使用了组件的属性。</p>
+<p>比如，对于Counter组件的propTypes定义代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Counter</span>.<span class="property">propTypes</span> = &#123;</span><br><span class="line">  <span class="attr">caption</span>: <span class="title class_">PropTypes</span>.<span class="property">string</span>.<span class="property">isRequired</span>,</span><br><span class="line">  <span class="attr">initValue</span>: <span class="title class_">PropTypes</span>.<span class="property">number</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其中要求caption必须是string类型，initValue必须是number类型。可以看到，两者除了类型不同之外，还有一个区别：caption带上了isRequried，这表示使用Counter组件必须要指定caption；而initValue因为没有isRequired，则表示如果没有也没关系。</p>
+<p>很明显，有了propTypes的检查，可以很容易发现对prop的不正确使用方法，可尽早发现代码中的错误。</p>
+<p>从上面可以看得出来propTypes检查可以防止不正确的prop使用方法，那么如果组件根本就没有定义propTypes会怎么样呢？</p>
+<p>可以尝试在src&#x2F;Counter.js文件中删除掉那一段给Counter.propTypes赋值的语句，在浏览器Console里可以看到红色警告不再出现。可见，没有propTypes定义，组件依然能够正常工作，而且，即使在上面propTypes检查出错的情况下，组件依旧能工作。也就是说propTypes检查只是一个辅助开发的功能，并不会改变组件的行为。</p>
+<p>propTypes虽然能够在开发阶段发现代码中的问题，但是放在产品环境中就不大合适了。</p>
+<p>首先，定义类的propTypes属性，无疑是要占用一些代码空间，而且propTypes检查也是要消耗CPU计算资源的。其次，在产品环境下做propTypes检查没有什么帮助，毕竟，propTypes产生的这些错误信息只有开发者才能看得懂，放在产品环境下，在最终用户的浏览器Console中输出这些错误信息没什么意义。</p>
+<p>所以，最好的方式是，开发者在代码中定义propTypes，在开发过程中避免犯错，但是在发布产品代码时，用一种自动的方式将propTypes去掉，这样最终部署到产品环境的代码就会更优。现有的babel-react-optimize就具有这个功能，可以通过npm安装，但是应该确保只在发布产品代码时使用它。</p>
+<h3 id="React的state"><a href="#React的state" class="headerlink" title="React的state"></a>React的state</h3><p>驱动组件渲染过程的除了prop，还有state，state代表组件的内部状态。由于React组件不能修改传入的prop，所以需要记录自身数据变化，就要使用state。</p>
+<h4 id="初始化state"><a href="#初始化state" class="headerlink" title="初始化state"></a>初始化state</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">    <span class="attr">count</span>: props.<span class="property">initValue</span> || <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>组件的state必须是一个JavaScript对象，不能是string或者number这样的简单数据类型，即使我们需要存储的只是一个数字类型的数据，也只能把它存作state某个字段对应的值。</p>
+<h4 id="读取和更新state"><a href="#读取和更新state" class="headerlink" title="读取和更新state"></a>读取和更新state</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onClickIncrementButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;<span class="attr">count</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span> + <span class="number">1</span>&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在代码中，通过this.state可以读取到组件的当前state。值得注意的是，我们改变组件state必须要使用this.setState函数，而不能直接去修改this.state</p>
+<h3 id="prop和state的对比"><a href="#prop和state的对比" class="headerlink" title="prop和state的对比"></a>prop和state的对比</h3><p>总结一下prop和state的区别：</p>
+<ul>
+<li><p>prop用于定义外部接口，state用于记录内部状态；</p>
+</li>
+<li><p>prop的赋值在外部世界使用组件时，state的赋值在组件内部；</p>
+</li>
+<li><p>组件不应该改变prop的值，而state存在的目的就是让组件来改变的。</p>
+</li>
+</ul>
+<p>组件的state，就相当于组件的记忆，其存在意义就是被修改，每一次通过this.setState函数修改state就改变了组件的状态，然后通过渲染过程把这种变化体现出来。</p>
+<p>但是，组件是绝不应该去修改传入的props值的，我们设想一下，假如父组件包含多个子组件，然后把一个JavaScript对象作为props值传给这几个子组件，而某个子组件居然改变了这个对象的内部值，那么，接下来其他子组件读取这个对象会得到什么值呢？当时读取了修改过的值，但是其他子组件是每次渲染都读取这个props的值呢？还是只读一次以后就用那个最初值呢？一切皆有可能，完全不可预料。也就是说，一个子组件去修改props中的值，可能让程序陷入一团混乱之中，这就完全违背了React设计的初衷。</p>
+<p>还记得第1章中我们看到的那个公式吗？</p>
+<p>UI＝render（data）</p>
+<p>React组件扮演的是render函数的角色，应该是一个没有副作用的纯函数。修改props的值，是一个副作用，组件应该避免。</p>
+<p>严格来说，React并没有办法阻止你去修改传入的props对象。所以，每个开发者就把这当做一个规矩，在编码中一定不要踩这儿红线，不然最后可能遇到不可预料的bug。</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/05/25/var%E3%80%81let%E3%80%81const%E7%9A%84%E5%8C%BA%E5%88%AB/" rel="next" title="var、let、const的区别">
+                  var、let、const的区别 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Luomeng1004</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">31k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">57 分钟</span>
+  </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+  <script class="next-config" data-name="leancloud_visitors" type="application/json">{"enable":true,"app_id":"899UImvVcAdnrBeHR6sNjNE8-gzGzoHsz","app_key":"9pVVlGgaRwYXALv7YWHTiKNr","server_url":"https://899uimvv.lc-cn-n1-shared.com","security":false}</script>
+  <script src="/js/third-party/statistics/lean-analytics.js"></script>
+
+
+
+</body>
+</html>

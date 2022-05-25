@@ -336,6 +336,24 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
       </tags>
   </entry>
   <entry>
+    <title>Object.assign详解</title>
+    <url>/2022/05/23/Object-assign%E8%AF%A6%E8%A7%A3/</url>
+    <content><![CDATA[<h3 id="一、Object-assign是什么？"><a href="#一、Object-assign是什么？" class="headerlink" title="一、Object.assign是什么？"></a>一、Object.assign是什么？</h3><p>首先了解下Object.assign()是什么。我们先看看ES6官方文档是怎么介绍的？</p>
+<blockquote>
+<p>Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。</p>
+</blockquote>
+<p>简单来说，就是Object.assign()是对象的静态方法，可以用来复制对象的可枚举属性到目标对象，利用这个特性可以实现对象属性的合并。</p>
+<h3 id="二、用法："><a href="#二、用法：" class="headerlink" title="二、用法："></a>二、用法：</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">assign</span>(target, ...sources)</span><br></pre></td></tr></table></figure>
+<p><strong>参数：</strong>target：目标对象，source：源对象<br><strong>返回值：</strong>target，即目标对象</p>
+]]></content>
+      <categories>
+        <category>前端技术</category>
+      </categories>
+      <tags>
+        <tag>ES6</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>React学习笔记</title>
     <url>/2022/05/20/React%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="React的工作方式"><a href="#React的工作方式" class="headerlink" title="React的工作方式"></a>React的工作方式</h2><h3 id="React的理念"><a href="#React的理念" class="headerlink" title="React的理念"></a>React的理念</h3><blockquote>
@@ -389,6 +407,18 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
     <content><![CDATA[]]></content>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>var、let、const的区别</title>
+    <url>/2022/05/25/var%E3%80%81let%E3%80%81const%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<h2 id="var、let、const的区别"><a href="#var、let、const的区别" class="headerlink" title="var、let、const的区别"></a>var、let、const的区别</h2>]]></content>
+      <categories>
+        <category>前端技术</category>
+      </categories>
+      <tags>
+        <tag>TODO</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -859,6 +889,76 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
       </categories>
       <tags>
         <tag>读书笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>深入浅出React和Redux——React组件的数据</title>
+    <url>/2022/05/25/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact%E5%92%8CRedux%E2%80%94%E2%80%94React%E7%BB%84%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE/</url>
+    <content><![CDATA[<blockquote>
+<p>“差劲的程序员操心代码，优秀的程序员操心数据结构和它们之间的关系。”</p>
+<p>—Linus Torvalds，Linux创始人</p>
+</blockquote>
+<p>毫无疑问，如何组织数据是程序的最重要问题。</p>
+<p>React组件的数据分为两种，prop和state，无论prop或者state的改变，都可能引发组件的重新渲染，那么，设计一个组件的时候，什么时候选择用prop什么时候选择用state呢？其实原则很简单，prop是组件的对外接口，state是组件的内部状态，对外用prop，内部用state。</p>
+<span id="more"></span>
+
+
+
+<h3 id="React的prop"><a href="#React的prop" class="headerlink" title="React的prop"></a>React的prop</h3><p>在React中，prop（property的简写）是从外部传递给组件的数据，一个React组件通过定义自己能够接受的prop就定义了自己的对外公共接口。</p>
+<p>每个React组件都是独立存在的模块，组件之外的一切都是外部世界，外部世界就是通过prop来和组件对话的。</p>
+<h4 id="给prop赋值"><a href="#给prop赋值" class="headerlink" title="给prop赋值"></a>给prop赋值</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">SampleButton</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">&quot;sample&quot;</span> <span class="attr">borderWidth</span>=<span class="string">&#123;2&#125;</span> <span class="attr">onClick</span>=<span class="string">&#123;onButtonClick&#125;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">&#123;&#123;color:</span> &quot;<span class="attr">red</span>&quot;&#125;&#125;</span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>React组件的prop所能支持的类型则丰富得多，除了字符串，可以是任何一种JavaScript语言支持的数据类型。</p>
+<h4 id="读取prop值"><a href="#读取prop值" class="headerlink" title="读取prop值"></a>读取prop值</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Counter</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(props);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">onClickIncrementButton</span> = <span class="variable language_">this</span>.<span class="property">onClickIncrementButton</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">onClickDecrementButton</span> = <span class="variable language_">this</span>.<span class="property">onClickDecrementButton</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">count</span>: props.<span class="property">initValue</span> || <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果一个组件需要定义自己的构造函数，一定要记得在构造函数的第一行通过super调用父类也就是React.Component的构造函数。如果在构造函数中没有调用super（props），那么组件实例被构造之后，类实例的所有成员函数就无法通过this.props访问到父组件传递过来的props值。很明显，给this.props赋值是React.Component构造函数的工作之一。</p>
+<h4 id="propTypes检查"><a href="#propTypes检查" class="headerlink" title="propTypes检查"></a>propTypes检查</h4><p>既然prop是组件的对外接口，那么就应该有某种方式让组件声明自己的接口规范。简单说，一个组件应该可以规范以下这些方面：</p>
+<ul>
+<li><p>这个组件支持哪些prop；</p>
+</li>
+<li><p>每个prop应该是什么样的格式。</p>
+</li>
+</ul>
+<p>React通过propTypes来支持这些功能。</p>
+<p>在ES6方法定义的组件类中，可以通过增加类的propTypes属性来定义prop规格，这不只是声明，而且是一种限制，在运行时和静态代码检查时，都可以根据propTypes判断外部世界是否正确地使用了组件的属性。</p>
+<p>比如，对于Counter组件的propTypes定义代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Counter</span>.<span class="property">propTypes</span> = &#123;</span><br><span class="line">  <span class="attr">caption</span>: <span class="title class_">PropTypes</span>.<span class="property">string</span>.<span class="property">isRequired</span>,</span><br><span class="line">  <span class="attr">initValue</span>: <span class="title class_">PropTypes</span>.<span class="property">number</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其中要求caption必须是string类型，initValue必须是number类型。可以看到，两者除了类型不同之外，还有一个区别：caption带上了isRequried，这表示使用Counter组件必须要指定caption；而initValue因为没有isRequired，则表示如果没有也没关系。</p>
+<p>很明显，有了propTypes的检查，可以很容易发现对prop的不正确使用方法，可尽早发现代码中的错误。</p>
+<p>从上面可以看得出来propTypes检查可以防止不正确的prop使用方法，那么如果组件根本就没有定义propTypes会怎么样呢？</p>
+<p>可以尝试在src&#x2F;Counter.js文件中删除掉那一段给Counter.propTypes赋值的语句，在浏览器Console里可以看到红色警告不再出现。可见，没有propTypes定义，组件依然能够正常工作，而且，即使在上面propTypes检查出错的情况下，组件依旧能工作。也就是说propTypes检查只是一个辅助开发的功能，并不会改变组件的行为。</p>
+<p>propTypes虽然能够在开发阶段发现代码中的问题，但是放在产品环境中就不大合适了。</p>
+<p>首先，定义类的propTypes属性，无疑是要占用一些代码空间，而且propTypes检查也是要消耗CPU计算资源的。其次，在产品环境下做propTypes检查没有什么帮助，毕竟，propTypes产生的这些错误信息只有开发者才能看得懂，放在产品环境下，在最终用户的浏览器Console中输出这些错误信息没什么意义。</p>
+<p>所以，最好的方式是，开发者在代码中定义propTypes，在开发过程中避免犯错，但是在发布产品代码时，用一种自动的方式将propTypes去掉，这样最终部署到产品环境的代码就会更优。现有的babel-react-optimize就具有这个功能，可以通过npm安装，但是应该确保只在发布产品代码时使用它。</p>
+<h3 id="React的state"><a href="#React的state" class="headerlink" title="React的state"></a>React的state</h3><p>驱动组件渲染过程的除了prop，还有state，state代表组件的内部状态。由于React组件不能修改传入的prop，所以需要记录自身数据变化，就要使用state。</p>
+<h4 id="初始化state"><a href="#初始化state" class="headerlink" title="初始化state"></a>初始化state</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">constructor</span>(<span class="params">props</span>) &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">    <span class="attr">count</span>: props.<span class="property">initValue</span> || <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>组件的state必须是一个JavaScript对象，不能是string或者number这样的简单数据类型，即使我们需要存储的只是一个数字类型的数据，也只能把它存作state某个字段对应的值。</p>
+<h4 id="读取和更新state"><a href="#读取和更新state" class="headerlink" title="读取和更新state"></a>读取和更新state</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">onClickIncrementButton</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;<span class="attr">count</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">count</span> + <span class="number">1</span>&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在代码中，通过this.state可以读取到组件的当前state。值得注意的是，我们改变组件state必须要使用this.setState函数，而不能直接去修改this.state</p>
+<h3 id="prop和state的对比"><a href="#prop和state的对比" class="headerlink" title="prop和state的对比"></a>prop和state的对比</h3><p>总结一下prop和state的区别：</p>
+<ul>
+<li><p>prop用于定义外部接口，state用于记录内部状态；</p>
+</li>
+<li><p>prop的赋值在外部世界使用组件时，state的赋值在组件内部；</p>
+</li>
+<li><p>组件不应该改变prop的值，而state存在的目的就是让组件来改变的。</p>
+</li>
+</ul>
+<p>组件的state，就相当于组件的记忆，其存在意义就是被修改，每一次通过this.setState函数修改state就改变了组件的状态，然后通过渲染过程把这种变化体现出来。</p>
+<p>但是，组件是绝不应该去修改传入的props值的，我们设想一下，假如父组件包含多个子组件，然后把一个JavaScript对象作为props值传给这几个子组件，而某个子组件居然改变了这个对象的内部值，那么，接下来其他子组件读取这个对象会得到什么值呢？当时读取了修改过的值，但是其他子组件是每次渲染都读取这个props的值呢？还是只读一次以后就用那个最初值呢？一切皆有可能，完全不可预料。也就是说，一个子组件去修改props中的值，可能让程序陷入一团混乱之中，这就完全违背了React设计的初衷。</p>
+<p>还记得第1章中我们看到的那个公式吗？</p>
+<p>UI＝render（data）</p>
+<p>React组件扮演的是render函数的角色，应该是一个没有副作用的纯函数。修改props的值，是一个副作用，组件应该避免。</p>
+<p>严格来说，React并没有办法阻止你去修改传入的props对象。所以，每个开发者就把这当做一个规矩，在编码中一定不要踩这儿红线，不然最后可能遇到不可预料的bug。</p>
+]]></content>
+      <categories>
+        <category>前端技术</category>
+      </categories>
+      <tags>
+        <tag>React</tag>
       </tags>
   </entry>
   <entry>
