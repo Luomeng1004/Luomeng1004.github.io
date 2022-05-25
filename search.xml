@@ -868,7 +868,7 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
       </tags>
   </entry>
   <entry>
-    <title>React学习笔记</title>
+    <title>深入浅出React和Redux——React的工作方式</title>
     <url>/2022/05/20/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact%E5%92%8CRedux%E2%80%94%E2%80%94React%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h3 id="React的理念"><a href="#React的理念" class="headerlink" title="React的理念"></a>React的理念</h3><blockquote>
 <p>打一个比方，React是一个聪明的建筑工人，而jQuery是一个比较傻的建筑工人，开发者你就是一个建筑的设计师，如果是jQuery这个建筑工人为你工作，你不得不事无巨细地告诉jQuery“如何去做”，要告诉他这面墙要拆掉重建，那面墙上要新开一个窗户，反之，如果是React这个建筑工人为你工作，你所要做的就是告诉这个工人“我想要什么样子”，只要把图纸递给React这个工人，他就会替你搞定一切，当然他不会把整个建筑拆掉重建，而是很聪明地把这次的图纸和上次的图纸做一个对比，发现不同之处，然后只去做适当的修改就完成任务了。</p>
