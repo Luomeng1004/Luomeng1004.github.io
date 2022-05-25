@@ -105,3 +105,14 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+symbols_count_time:
+  wpm: 275
+  awl: 2
+
+#leancloud_counter_security:
+#  enable_sync: true
+#  app_id: fs0wvmhImoaJSpfTX47gnxLT-MdYXbMMI
+#  app_key: GDC8oRxVFLxGdWp48aealRew
+#  username: <your username> # Will be asked while deploying if is left blank
+#  password: <your password> # Recommmended to be left blank. Will be asked while deploying if is left blank
