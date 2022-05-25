@@ -697,10 +697,10 @@ clarity_analytics: # <project_id>
 # You can visit https://www.leancloud.cn to get AppID and AppKey.
 leancloud_visitors:
   enable: true
-  app_id: 899UImvVcAdnrBeHR6sNjNE8-gzGzoHsz
-  app_key: 9pVVlGgaRwYXALv7YWHTiKNr
+  app_id: fs0wvmhImoaJSpfTX47gnxLT-MdYXbMMI
+  app_key: GDC8oRxVFLxGdWp48aealRew
   # Required for apps from CN region
-  server_url: https://899uimvv.lc-cn-n1-shared.com
+  # server_url: https://899uimvv.lc-cn-n1-shared.com
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in leancloud counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set `security` to `false`.
