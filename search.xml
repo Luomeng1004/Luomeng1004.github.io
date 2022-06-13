@@ -937,4 +937,19 @@ Producer使用push模式将消息发布到broker，Consumer使用pull模式从br
         <tag>React</tag>
       </tags>
   </entry>
+  <entry>
+    <title>让 Spring Session 不在执行 Config 命令</title>
+    <url>/2022/06/13/%E8%AE%A9%20Spring%20Session%20%E4%B8%8D%E5%9C%A8%E6%89%A7%E8%A1%8C%20Config%20%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="让-Spring-Session-不再执行-Config-命令"><a href="#让-Spring-Session-不再执行-Config-命令" class="headerlink" title="让 Spring Session 不再执行 Config 命令"></a>让 Spring Session 不再执行 Config 命令</h2><p>在集成 Spring Session 做session共享的时候，有时候我们服务器是限制使用CONFIG命令的，这就导致在项目启动的时候会没有授权的错误，通过以下方法可以屏蔽 Spring Session 的CONFIG命令，让程序可以正常运行。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisConfig</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> ConfigureRedisAction <span class="title function_">configureRedisAction</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> ConfigureRedisAction.NO_OP;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 代码是基于 Spring Boot 的，其他请自行翻译。</p>
+]]></content>
+      <categories>
+        <category>后端技术</category>
+      </categories>
+      <tags>
+        <tag>问题解决</tag>
+      </tags>
+  </entry>
 </search>
