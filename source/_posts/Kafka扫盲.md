@@ -2,7 +2,7 @@
 title: Kafka扫盲
 date: 2022-05-20 16:42:56
 tags: [消息队列]
-categories: 后端技术
+categories: 后端/架构
 ---
 
 ## Kafka

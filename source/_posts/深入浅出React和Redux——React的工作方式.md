@@ -2,7 +2,7 @@
 title: 深入浅出React和Redux——React的工作方式
 date: 2022-05-20 22:58:30
 tags: [React]
-categories: 前端技术
+categories: 前端/移动
 ---
 
 ### React的理念

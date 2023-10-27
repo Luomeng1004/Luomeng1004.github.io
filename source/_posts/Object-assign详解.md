@@ -2,7 +2,7 @@
 title: Object.assign详解
 date: 2022-05-24 00:04:32
 tags: ES6
-categories: 前端技术
+categories: 前端/移动
 ---
 
 

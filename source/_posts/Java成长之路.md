@@ -2,7 +2,7 @@
 title: Java成长之路
 date: 2022-05-20 10:48:39
 tags: 成长之路
-categories: 后端技术
+categories: 后端/架构
 ---
 
 # Java成长之路
