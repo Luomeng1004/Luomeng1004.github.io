@@ -2,7 +2,7 @@
 title: Apache Jackrabbit
 date: 2022-05-20 00:28:41
 tags: 数据库
-categories: 后端/架构
+categories: 专业
 ---
 
 ## 什么是Jackrabbit

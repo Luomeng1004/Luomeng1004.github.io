@@ -2,7 +2,7 @@
 title: 让 Spring Session 不再执行 Config 命令
 date: 2022-06-13 14:40:24
 tags: [问题解决]
-categories: 后端/架构
+categories: 专业
 ---
 
 ## 让 Spring Session 不再执行 Config 命令

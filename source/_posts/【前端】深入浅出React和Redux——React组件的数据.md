@@ -2,7 +2,7 @@
 title: 深入浅出React和Redux——React组件的数据
 date: 2022-05-25 14:25:16
 tags: React
-categories: 前端/移动
+categories: 专业
 ---
 
 
