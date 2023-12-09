@@ -1,7 +1,7 @@
 ---
 title: Redis 设计与实现
 date: 2023-11-23 00:06:39
-tags: 读书笔记,缓存
+tags: [读书笔记, 缓存]
 categories: 专业
 ---
 
