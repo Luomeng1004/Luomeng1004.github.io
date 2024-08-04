@@ -13,6 +13,10 @@ https://blog.csdn.net/wv112406/article/details/131626594
 
 
 
+<!--more-->
+
+
+
 #### ST-LINK V2
 
 *st_nucleo_f103rb.cfg 内容改为如下：因为使用StLink-V2版本*
@@ -108,6 +112,14 @@ which arm-none-eabi-gdb
 
 
 
+
+
+
+
+
+### 附录
+
+#### 为什么要有 16 进制？
 
 
 
