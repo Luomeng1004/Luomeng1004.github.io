@@ -7,13 +7,17 @@ categories: 技术
 
 
 
-### 一、环境搭建
-
-https://blog.csdn.net/wv112406/article/details/131626594
+STM32系列32位微控制器基于Arm® Cortex®-M处理器，旨在为MCU用户提供新的开发自由度。它包括一系列产品，集高性能、实时功能、数字信号处理、低功耗/低电压操作、连接性等特性于一身，同时还保持了集成度高和易于开发的特点。
 
 
 
 <!--more-->
+
+
+
+### 一、环境搭建
+
+https://blog.csdn.net/wv112406/article/details/131626594
 
 
 
