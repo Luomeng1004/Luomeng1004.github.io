@@ -944,9 +944,11 @@ OLED_DISPLAY_8x16_BUFFER(6, "a"); //显示字符串
 
 
 
-### 2. 无源蜂鸣器
+### 5. ADC
 
 #### 端口设置
+
+<img src="http://img.boomclap.cn/uPic/202408/1724258012132JIarx6.png" alt="image-20240822003331636" style="zoom:50%;" />
 
 #### 驱动程序
 
