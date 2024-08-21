@@ -17,6 +17,14 @@ categories: 技术
 
 ### LED
 
+#### 端口设置
+
+<img src="http://img.boomclap.cn/uPic/202408/1724253592545flV2OW.png" alt="image-20240821231951653" style="zoom:43%;" />
+
+<img src="http://img.boomclap.cn/uPic/202408/1724253699880p4iwmw.png" alt="image-20240821232139717" style="zoom:43%;" />
+
+#### 驱动程序
+
 led.h
 
 ```c
@@ -72,6 +80,8 @@ void LED_2_Contrary(void){
 	HAL_GPIO_WritePin(GPIOB,LED2_Pin,1-HAL_GPIO_ReadPin(GPIOB,LED2_Pin));
 }
 ```
+
+#### 主函数
 
 main.c
 
