@@ -17,7 +17,7 @@ categories: 技术
 
 ### 1. LED
 
-#### 端口设置
+#### 设置
 
 <img src="http://img.boomclap.cn/uPic/202408/1724253592545flV2OW.png" alt="image-20240821231951653" style="zoom:43%;" />
 
@@ -108,7 +108,7 @@ while (1)
 
 ### 2. 无源蜂鸣器
 
-#### 端口设置
+#### 设置
 
 #### 驱动程序
 
@@ -181,7 +181,7 @@ void BUZZER_SOLO2(void){//蜂鸣器输出单音的报警音（样式2：CPU微�
 
 ### 3. DHT11（温湿度）
 
-#### 端口设置
+#### 设置
 
 <img src="http://img.boomclap.cn/uPic/202408/1724255876760q4TEsR.png" alt="image-20240821235755453" style="zoom:50%;" />
 
@@ -359,7 +359,7 @@ OLED_DISPLAY_8x16_BUFFER(6, a); //显示字符串
 
 ### 4. OLED
 
-#### 端口设置
+#### 设置
 
 <img src="http://img.boomclap.cn/uPic/202408/1724256194991HK19TJ.png" alt="image-20240822000314744" style="zoom:50%;" />
 
@@ -946,9 +946,11 @@ OLED_DISPLAY_8x16_BUFFER(6, "a"); //显示字符串
 
 ### 5. ADC
 
-#### 端口设置
+#### 设置
 
 <img src="http://img.boomclap.cn/uPic/202408/1724258012132JIarx6.png" alt="image-20240822003331636" style="zoom:50%;" />
+
+<img src="http://img.boomclap.cn/uPic/202409/1725181177562gH67Og.png" alt="image-20240901165937074" style="zoom:50%;" />
 
 #### 驱动程序
 
@@ -958,6 +960,148 @@ OLED_DISPLAY_8x16_BUFFER(6, "a"); //显示字符串
 
 
 
+### 6. DMA
+
+基于上面的 ADC 功能
+
+#### 设置
+
+#### 驱动程序
+
+#### 主程序
+
+main.c
+
+```c
+/* USER CODE BEGIN 1 */
+uint16_t dmaadc[1];
+```
+
+
+
+````c
+/* USER CODE BEGIN 2 */
+
+HAL_ADCEx_Calibration_Start(&hadc1);
+HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&dmaadc, 1);
+
+/* USER CODE END 2 */
+````
+
+```c
+char str[6]; // 足够存储最大的uint16_t值（65535）加上字符串结束符'\0'
+uint16_t v = dmaadc[0];
+// 使用snprintf以避免缓冲区溢出
+snprintf(str, sizeof(str), "%5d\n", v);
+
+// OLED_DISPLAY_8x16_BUFFER(3, a); //显示字符串
+// OLED_DISPLAY_CLEAR();
+OLED_DISPLAY_8x16_BUFFER(4, str); //显示字符串
+```
+
+
+
+### 7. 有源蜂鸣器
+
+通过三极管（S8550）控制蜂鸣器开关
+
+#### 设置
+
+<img src="http://img.boomclap.cn/uPic/202409/1725180699097I2jFbm.png" alt="image-20240901165137723" style="zoom:50%;" />
+
+<img src="http://img.boomclap.cn/uPic/202409/1725180728344wNtOyz.png" alt="image-20240901165207878" style="zoom:50%;" />
+
+#### 驱动程序
+
+buzzer1.h
+
+```c
+//
+// Created by Titan on 24-8-20.
+//
+
+#ifndef BUZZER1_H
+#define BUZZER1_H
+
+#include "stm32f1xx_hal.h" //HAL库文件声明
+#include "main.h"
+
+void BUZZER_SOLO(uint8_t time, uint32_t Delay);
+
+#endif //BUZZER1_H
+
+```
+
+buzzer1.c
+
+```c
+//
+// Created by Titan on 24-8-20.
+//
+
+#include "buzzer1.h"
+
+void BUZZER_SOLO(uint8_t time, uint32_t Delay){//蜂鸣器输出单音的报警音（样式1：HAL库的精准延时函数）
+    uint16_t i;
+    for(i=0;i<time;i++){
+      HAL_GPIO_WritePin(BEEP2_GPIO_Port,BEEP2_Pin,GPIO_PIN_RESET); //蜂鸣器接口输出低电平1
+      HAL_Delay(Delay); //延时
+      HAL_GPIO_WritePin(BEEP2_GPIO_Port,BEEP2_Pin,GPIO_PIN_SET); //蜂鸣器接口输出高电平0
+      HAL_Delay(Delay); //延时
+    }
+}
+```
+
+
+
+#### 主程序
+
+```c
+BUZZER_SOLO(5, 500);
+```
+
+
+
+
+
+### 8. 外部中断
+
+#### 设置
+
+<img src="http://img.boomclap.cn/uPic/202409/1725181760942gaIkh9.png" alt="image-20240901170920783" style="zoom:50%;" />
+
+端口触发模式，解释：
+
+- 外部中断模式，上升沿触发（电平由低变高）；
+- 外部中断模式，下降沿触发（电平由高变低）；
+- 外部中断模式，高/低电平触发（无方向，高低变化就触发）；
+- 外部事件模式，上升沿触发；
+- 外部事件模式，下降沿触发；
+- 外部事件模式，高/低电平触发；
+
+端口上/下拉：
+
+<img src="http://img.boomclap.cn/uPic/202409/1725182024118JW9q1D.png" alt="image-20240901171343967" style="zoom:50%;" />
+
+- 无上/下拉
+- 上拉
+- 下拉
+
+
+
+#### 驱动程序
+
+#### 主程序
+
+HAL_Delay()函数无法用于中断函数
+
+HAL_Delay函数是基于系统滴答定时器中断来累增计数产生延时效果。这表明如果该函数被调用在外设的中断处理函数里，系统滴答定时器的中断就必须比这个外设中断的优先级高，否则这个外设中断将被阻塞。
+
+（系统时钟设置里给滴答定时器的抢占优先级为15，所以在中断里调用HAL_Delay会卡死，所以我们需要去调高滴答定时器的抢占优先级，调低中断的抢占优先级）
+
+![img](http://img.boomclap.cn/uPic/202409/1725185391534aE7Xyj.png)
+
+解决方案：可以声明一个全局变量（标志位），在中断函数中修改全局变量的值，在主函数中判断值，如果值满足变化就执行某些操作。
 
 
 
@@ -965,22 +1109,9 @@ OLED_DISPLAY_8x16_BUFFER(6, "a"); //显示字符串
 
 
 
+### 100. xxx
 
-
-
-
-
-
-
-
-
-
-
-
-
-### 2. 无源蜂鸣器
-
-#### 端口设置
+#### 设置
 
 #### 驱动程序
 
